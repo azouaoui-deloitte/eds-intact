@@ -29,7 +29,10 @@
   --color-border-neutral-light: #d8d8d8; /* border/default/neutral-light */
   --color-overlay: #333; /* hero image overlay (neutral/800) */
   --color-primary-hover: #9e0a26; /* i-button Primary Hover */
-  --color-secondary-hover: #94712a1a; /* i-button Secondary Hover */
+  --color-secondary-hover: #94712a1a; /* i-button Secondary Hover, i-text-button Hover pill */
+  --color-text-button-reversed-hover: #cce5f7; /* b-text-button Reversed Hover */
+  --transition-state: 0.25s ease; /* hover / focus colour changes (prod intact.ca: 0.25s; Figma: instant) */
+  --transition-reveal: 0.51s cubic-bezier(0.25, 1, 0.5, 1); /* product row hover, Figma Smart animate Gentle 511 ms */
   --color-tertiary-hover: #333; /* i-button Tertiary Hover */
   --color-tertiary-reversed-hover: #ede6df; /* i-button Tertiary-reversed Hover */
   --color-disabled-bg: #d8d8d8; /* i-button Disabled */
@@ -146,10 +149,13 @@
   --nav-topbar-height: 32px;
   --nav-main-height: 64px;
   --nav-height: 96px;
+  --nav-menu-column-width: 324px; /* Nav items (desktop menu selection) */
+  --nav-drawer-close-inset: 8px; /* mobile lvl 1 top bar right padding (tablet 24) */
 }
 
 @media (width >= 744px) {
   :root {
+    --nav-drawer-close-inset: 24px;
     --type-display-size: 48px; /* Hero Style=Half (Tablet and Mobile only), 744 */
     --type-display-line-height: 52px;
     --page-padding-x: 40px;
