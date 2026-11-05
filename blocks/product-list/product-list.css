@@ -63,6 +63,7 @@ main .section.product-list-container .default-content-wrapper h2 {
 @media (width >= 1024px) {
   .product-list .product-list-item {
     grid-template-columns: var(--product-pictogram-width) 1fr var(--product-description-width);
+    transition: color var(--transition-reveal);
   }
 
   .product-list .product-list-pictogram {
@@ -76,7 +77,7 @@ main .section.product-list-container .default-content-wrapper h2 {
   .product-list .product-list-pictogram,
   .product-list .product-list-description {
     opacity: 0;
-    transition: opacity 0.2s ease;
+    transition: opacity var(--transition-reveal);
   }
 
   .product-list .product-list-item:hover,
@@ -100,6 +101,7 @@ main .section.product-list-container .default-content-wrapper h2 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .product-list .product-list-item,
   .product-list .product-list-pictogram,
   .product-list .product-list-description {
     transition: none;
