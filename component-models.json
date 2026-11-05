@@ -134,8 +134,60 @@
         "label": "Style",
         "options": [
           {
-            "name": "Highlight",
-            "value": "highlight"
+            "name": "Sand background (Primary/Sand)",
+            "value": "sand"
+          },
+          {
+            "name": "Red background (Primary/Intact Red)",
+            "value": "red"
+          },
+          {
+            "name": "Dark background (surface/dark)",
+            "value": "dark"
+          },
+          {
+            "name": "Centered content",
+            "value": "center"
+          },
+          {
+            "name": "Split: intro left, block right",
+            "value": "split"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "accordion-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "summary",
+        "label": "Question",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Answer",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Variant",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Overlay (text over image)",
+            "value": "overlay"
           }
         ]
       }
@@ -152,10 +204,24 @@
         "multi": false
       },
       {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tag",
+        "label": "Tag (optional, e.g. New)",
+        "value": ""
+      },
+      {
         "component": "richtext",
         "name": "text",
         "value": "",
-        "label": "Text",
+        "label": "Text (CTA link: bold + italic = Tertiary)",
         "valueType": "string"
       }
     ]
@@ -193,6 +259,19 @@
     "id": "hero",
     "fields": [
       {
+        "component": "select",
+        "name": "classes",
+        "value": "left-on-image",
+        "label": "Hero style (Figma i-hero)",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Left on image",
+            "value": "left-on-image"
+          }
+        ]
+      },
+      {
         "component": "reference",
         "valueType": "string",
         "name": "image",
@@ -210,7 +289,127 @@
         "component": "richtext",
         "name": "text",
         "value": "",
-        "label": "Text",
+        "label": "Text (heading, group label, buttons: bold = Primary, italic = Secondary, phone line)",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "marquee-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "product-list-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Pictogram",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description (shown on hover / focus)",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "Link"
+      }
+    ]
+  },
+  {
+    "id": "side-by-side",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Options (Figma i-side by side)",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Type",
+            "children": [
+              {
+                "name": "In Container",
+                "value": "in-container"
+              }
+            ]
+          },
+          {
+            "name": "Order",
+            "children": [
+              {
+                "name": "Image Left",
+                "value": "image-left"
+              }
+            ]
+          },
+          {
+            "name": "Theme",
+            "children": [
+              {
+                "name": "Burgundy (surface/alternate/dark-2)",
+                "value": "burgundy"
+              },
+              {
+                "name": "Teal (surface/alternate/dark-1)",
+                "value": "teal"
+              },
+              {
+                "name": "White",
+                "value": "white"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text (heading, body, CTA: italic = Secondary)",
         "valueType": "string"
       }
     ]

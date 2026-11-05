@@ -31,8 +31,24 @@
           "label": "Style",
           "options": [
             {
-              "name": "Highlight",
-              "value": "highlight"
+              "name": "Sand background (Primary/Sand)",
+              "value": "sand"
+            },
+            {
+              "name": "Red background (Primary/Intact Red)",
+              "value": "red"
+            },
+            {
+              "name": "Dark background (surface/dark)",
+              "value": "dark"
+            },
+            {
+              "name": "Centered content",
+              "value": "center"
+            },
+            {
+              "name": "Split: intro left, block right",
+              "value": "split"
             }
           ]
         }
@@ -49,6 +65,10 @@
         "title",
         "hero",
         "cards",
+        "product-list",
+        "side-by-side",
+        "accordion",
+        "marquee",
         "columns",
         "fragment"
       ]

@@ -14,8 +14,18 @@
       "title",
       "hero",
       "cards",
+      "product-list",
+      "side-by-side",
+      "accordion",
+      "marquee",
       "columns",
       "fragment"
+    ]
+  },
+  {
+    "id": "accordion",
+    "components": [
+      "accordion-item"
     ]
   },
   {
@@ -37,6 +47,18 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "marquee",
+    "components": [
+      "marquee-item"
+    ]
+  },
+  {
+    "id": "product-list",
+    "components": [
+      "product-list-item"
     ]
   }
 ]

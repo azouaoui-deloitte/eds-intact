@@ -95,8 +95,8 @@ export function decorateButtons(main) {
 
     p.className = 'button-wrapper';
     a.className = 'button';
-    if (strong && em) { // high-impact call-to-action
-      a.classList.add('accent');
+    if (strong && em) { // Figma i-button Tertiary
+      a.classList.add('tertiary');
       const outer = strong.contains(em) ? strong : em;
       outer.replaceWith(a);
     } else if (strong) {
@@ -118,6 +118,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  main.querySelectorAll('.section.red, .section.dark').forEach((section) => section.classList.add('reversed'));
   decorateBlocks(main);
   decorateButtons(main);
 }

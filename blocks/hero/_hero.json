@@ -9,7 +9,8 @@
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
               "name": "Hero",
-              "model": "hero"
+              "model": "hero",
+              "classes": "left-on-image"
             }
           }
         }
@@ -20,6 +21,19 @@
     {
       "id": "hero",
       "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "value": "left-on-image",
+          "label": "Hero style (Figma i-hero)",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "Left on image",
+              "value": "left-on-image"
+            }
+          ]
+        },
         {
           "component": "reference",
           "valueType": "string",
@@ -38,7 +52,7 @@
           "component": "richtext",
           "name": "text",
           "value": "",
-          "label": "Text",
+          "label": "Text (heading, group label, buttons: bold = Primary, italic = Secondary, phone line)",
           "valueType": "string"
         }
       ]
