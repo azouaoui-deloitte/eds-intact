@@ -376,18 +376,25 @@
   outline-offset: var(--border-sm);
 }
 
-/* Nav items type=card: featured card */
+/* Nav items type=card: featured card (desktop: image fill, white lockup; mobile / tablet: image on
+   top of a bordered white lockup) */
 .nav-wrapper .nav-menu-card {
   position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  box-sizing: border-box;
-  aspect-ratio: 324 / 443;
   overflow: hidden;
   border-radius: var(--radius-md);
-  padding: var(--size-16);
-  color: var(--color-white);
+}
+
+.nav-wrapper a.nav-menu-card:any-link {
+  color: var(--color-surface-dark);
+}
+
+.nav-wrapper .nav-menu-card-media {
+  position: relative;
+  display: block;
+  aspect-ratio: 320 / 188;
 }
 
 .nav-wrapper .nav-menu-card-image {
@@ -400,8 +407,10 @@
 }
 
 .nav-wrapper .nav-menu-card-tag {
-  align-self: flex-start;
-  border-radius: var(--radius-pill);
+  position: absolute;
+  inset-block-start: var(--size-16);
+  inset-inline-start: var(--size-16);
+  border-radius: var(--size-40);
   padding: var(--size-4) var(--size-8);
   background-color: var(--color-pink-light);
   color: var(--color-surface-dark);
@@ -416,19 +425,24 @@
   display: flex;
   align-items: flex-end;
   gap: var(--size-16);
+  border: var(--border-xs) solid var(--color-border-neutral-light);
+  border-block-start: 0;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  padding: var(--size-16);
+  background-color: var(--color-white);
 }
 
 .nav-wrapper .nav-menu-card-copy {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: var(--size-8);
+  gap: var(--size-4);
 }
 
 .nav-wrapper .nav-menu-card-title {
-  font-size: var(--size-20);
+  font-size: var(--type-label-lg-size);
   font-weight: var(--font-weight-bold);
-  line-height: var(--size-24);
+  line-height: var(--type-label-lg-line-height);
 }
 
 .nav-wrapper .nav-menu-card-text {
@@ -436,9 +450,60 @@
   line-height: var(--type-nav-line-height);
 }
 
+.nav-wrapper .nav-menu-card-arrow {
+  flex: none;
+  inline-size: var(--size-32);
+  block-size: var(--size-32);
+  fill: var(--color-surface-dark);
+  stroke: var(--color-white);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav-wrapper .nav-menu-card-arrow path {
+  fill: none;
+}
+
 .nav-wrapper .nav-menu-card:focus-visible {
   outline: var(--border-sm) solid var(--color-surface-dark);
   outline-offset: var(--border-sm);
+}
+
+.nav-wrapper .nav-menu .nav-menu-card {
+  justify-content: flex-end;
+  aspect-ratio: 324 / 443;
+  padding: var(--size-16);
+}
+
+.nav-wrapper .nav-menu a.nav-menu-card:any-link {
+  color: var(--color-white);
+}
+
+.nav-wrapper .nav-menu .nav-menu-card-media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  aspect-ratio: auto;
+}
+
+.nav-wrapper .nav-menu .nav-menu-card-lockup {
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+.nav-wrapper .nav-menu .nav-menu-card-copy {
+  gap: var(--size-8);
+}
+
+.nav-wrapper .nav-menu .nav-menu-card-title {
+  font-size: var(--size-20);
+}
+
+.nav-wrapper .nav-menu .nav-menu-card-arrow {
+  fill: var(--color-white);
+  stroke: var(--color-surface-dark);
 }
 
 /* i_page_search_suggestions: .form_intact_search pill + TOP SUGGESTIONS */
@@ -707,6 +772,16 @@
   gap: var(--size-40);
 }
 
+.nav-wrapper .nav-drawer-columns {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-40);
+}
+
+.nav-wrapper .nav-drawer-sub .nav-menu-card-title {
+  font-weight: var(--font-weight-semibold);
+}
+
 .nav-wrapper .nav-drawer-sublinks {
   display: flex;
   flex-direction: column;
@@ -715,6 +790,7 @@
 }
 
 .nav-wrapper .nav-drawer-sub .nav-drawer-sublink {
+  padding-block: 6px;
   font-size: var(--type-label-md-size);
   line-height: var(--type-label-md-line-height);
 }
@@ -724,6 +800,10 @@
   border-block-start: var(--border-xs) solid var(--color-border-neutral-light);
   padding: var(--size-20) var(--page-padding-x);
   background-color: var(--color-white);
+}
+
+.nav-wrapper .nav-drawer.is-level-2 .nav-drawer-footer {
+  display: none;
 }
 
 /* i-button Primary 56px, full width */
@@ -796,6 +876,17 @@ body.nav-drawer-open {
 @media (width >= 744px) and (width < 1024px) {
   .nav-wrapper .nav-drawer-main {
     gap: var(--size-32);
+  }
+
+  .nav-wrapper .nav-drawer-sub {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 320px));
+    align-items: start;
+    gap: var(--size-24);
+  }
+
+  .nav-wrapper .nav-drawer-sub .nav-menu-card-title {
+    font-weight: var(--font-weight-bold);
   }
 }
 

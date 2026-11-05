@@ -196,3 +196,11 @@
     --device-width: 1440px;
   }
 }
+
+/* 1920 mode: page padding of the Figma 1920 frames (i-nav, desktop menu selection, search) */
+@media (width >= 1920px) {
+  :root {
+    --page-padding-x: 252px;
+    --device-width: 1920px;
+  }
+}
