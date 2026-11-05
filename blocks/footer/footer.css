@@ -110,7 +110,7 @@
   gap: var(--v-spacing-xs);
 }
 
-/* b-text-button Reversed */
+/* b-text-button Reversed: Hover #cce5f7 (no underline), Focus 2 px ring, 2 px gap, radius 4 */
 .footer-inner .footer-link {
   display: block;
   padding-block: var(--size-4);
@@ -119,11 +119,17 @@
   font-weight: var(--font-weight-bold);
   line-height: var(--type-label-md-line-height);
   text-decoration: none;
+  transition: color var(--transition-state);
 }
 
 .footer-inner .footer-link:hover {
-  text-decoration: underline;
-  text-underline-offset: var(--size-4);
+  color: var(--color-text-button-reversed-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-inner .footer-link {
+    transition: none;
+  }
 }
 
 .footer-inner .footer-social,
