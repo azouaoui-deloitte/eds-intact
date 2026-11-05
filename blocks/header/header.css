@@ -1035,11 +1035,11 @@ body.nav-drawer-open {
 .nav-wrapper .i-nav.us-v2 .nav-menu-arrow {
   position: absolute;
   inset-block-start: 50%;
-  inset-inline-start: calc(100% + 2px);
+  inset-inline-start: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  inline-size: 20px;
+  inline-size: 24px;
   block-size: 24px;
   border-radius: var(--radius-xs);
   opacity: 0;
