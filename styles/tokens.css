@@ -30,7 +30,6 @@
   --color-overlay: #333; /* hero image overlay (neutral/800) */
   --color-primary-hover: #9e0a26; /* i-button Primary Hover */
   --color-secondary-hover: #94712a1a; /* i-button Secondary Hover, i-text-button Hover pill */
-  --color-text-button-reversed-hover: #cce5f7; /* b-text-button Reversed Hover */
   --transition-state: 0.25s ease; /* hover / focus colour changes (prod intact.ca: 0.25s; Figma: instant) */
   --transition-reveal: 0.51s cubic-bezier(0.25, 1, 0.5, 1); /* product row hover, Figma Smart animate Gentle 511 ms */
   --color-tertiary-hover: #333; /* i-button Tertiary Hover */
