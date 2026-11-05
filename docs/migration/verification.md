@@ -92,8 +92,28 @@ Remaining deltas are font- or content-driven: with the fallback serif the 64 px 
 Figma (Intact Serif) wraps to two (−68 px), and the test content omits the library-only list (`i-listcolumn`),
 breadcrumbs and contest notes.
 
+## AEM render (`https://localhost:8444/content/intact/en/personal-insurance.html`)
+
+Same harnesses, run on the local author render (UE instrumentation and `editor-support.js` active):
+
+| Check | Result |
+|---|---|
+| Element boxes 1440 | 53/54 (S03 +5, Figma content) |
+| Visual diff 1440 | S02–S09 1.2–2.4 %, S08 4.8 % |
+| Overflow 375 / 768 / 1024 / 1440 | none |
+| Button / product row / accordion states | pass |
+| axe `main` | 0 violations |
+| Header 1440 (i-nav) | 9/18 boxes, all failures are text widths (fallback font); 4.5 % diff |
+| Footer 1440 (i-footer) | 19/30 boxes, text widths + `col1` height (Figma frame fixed at 172 while its links end at 286) ; 4.0 % diff |
+| Header / footer states | 25/25 (line selector, hover, focus order, search, Scrolled, drawer, legal notes, axe) |
+
+Two AEM-only defects were found and fixed: the boilerplate `editor-support-rte.js` wrapped richtext in an extra
+`div` (hero button group and centred copy lost their `> p` selectors), and AEM drops an empty `imageAlt` (hero and
+side-by-side images rendered without `alt`).
+
 ## Universal Editor
 
-Blocked until AEM Code Sync is enabled on `eds-intact` (AEM cannot load the component models from the code bus).
-Pending: render through `https://localhost:8444`, `data-aue-*` instrumentation check, `/update` round-trip with a
-temporary no-IMS UES, then revert.
+`/update` round-trip through a temporary UES (port 8010, IMS validation disabled): page `jcr:title` (text), hero
+`text` (richtext) and hero `classes` (select) all returned 200 and were persisted in the JCR, then reverted the same
+way (AEM re-serialises the richtext with newlines between block elements; no rendering change). The temporary UES
+was stopped; the editor keeps using `https://127.0.0.1:8000`.
