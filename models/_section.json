@@ -70,6 +70,8 @@
         "accordion",
         "marquee",
         "columns",
+        "stock-quote",
+        "cf-rates",
         "fragment"
       ]
     }
