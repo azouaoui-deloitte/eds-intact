@@ -268,6 +268,34 @@
           {
             "name": "Left on image",
             "value": "left-on-image"
+          },
+          {
+            "name": "Center on image",
+            "value": "center-on-image"
+          },
+          {
+            "name": "In container",
+            "value": "in-container"
+          },
+          {
+            "name": "Center on solid",
+            "value": "center-on-solid"
+          },
+          {
+            "name": "Center full-width image",
+            "value": "center-full-width-image"
+          },
+          {
+            "name": "Half",
+            "value": "half"
+          },
+          {
+            "name": "Simple",
+            "value": "simple"
+          },
+          {
+            "name": "Simple with illustration",
+            "value": "simple-with-illustration"
           }
         ]
       },
@@ -286,10 +314,17 @@
         "value": ""
       },
       {
+        "component": "text",
+        "valueType": "string",
+        "name": "tag",
+        "label": "Tag (optional, i-tag)",
+        "value": ""
+      },
+      {
         "component": "richtext",
         "name": "text",
         "value": "",
-        "label": "Text (heading, group label, buttons: bold = Primary, italic = Secondary, phone line)",
+        "label": "Text (heading, body, bold paragraph = button group label, buttons: bold = Primary, italic = Secondary, phone line)",
         "valueType": "string"
       }
     ]
@@ -360,6 +395,10 @@
               {
                 "name": "In Container",
                 "value": "in-container"
+              },
+              {
+                "name": "Thirds",
+                "value": "thirds"
               }
             ]
           },
@@ -376,6 +415,10 @@
             "name": "Theme",
             "children": [
               {
+                "name": "Sand (Primary/Sand)",
+                "value": "sand"
+              },
+              {
                 "name": "Burgundy (surface/alternate/dark-2)",
                 "value": "burgundy"
               },
@@ -386,6 +429,24 @@
               {
                 "name": "White",
                 "value": "white"
+              }
+            ]
+          },
+          {
+            "name": "Image",
+            "children": [
+              {
+                "name": "Bleed (illustration overflowing the block)",
+                "value": "bleed"
+              }
+            ]
+          },
+          {
+            "name": "Buttons",
+            "children": [
+              {
+                "name": "Size 56px (i-button Size=56px)",
+                "value": "buttons-lg"
               }
             ]
           }

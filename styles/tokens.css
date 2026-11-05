@@ -34,6 +34,7 @@
   --color-tertiary-reversed-hover: #ede6df; /* i-button Tertiary-reversed Hover */
   --color-disabled-bg: #d8d8d8; /* i-button Disabled */
   --color-disabled-text: #757575;
+  --color-tag-border-default: #1a1a1a26; /* i-tag Color=Default stroke */
 
   /* font families */
   --font-heading: 'Intact Serif', 'Intact Serif Fallback', georgia, serif; /* font/heading-style/family */
@@ -52,6 +53,8 @@
   --type-section-letter-spacing: -0.56px;
   --type-product-size: 32px; /* product row title, hard-coded 56/56 in Figma; mobile assumed */
   --type-product-line-height: 36px;
+  --type-heading-l-size: 32px; /* side by side Thirds: 48/52 at 1440 (mobile assumed) */
+  --type-heading-l-line-height: 36px;
   --type-label-lg-size: 18px; /* functional/button-label-lg */
   --type-label-lg-line-height: 24px;
   --type-label-md-size: 16px; /* functional/button-label-md */
@@ -96,6 +99,7 @@
   --v-spacing-xs: 4px; /* i-v-spacing-xs 4 / 4 / 8 / 8 */
   --sbs-gutter: 32px; /* i-sbs-gutter 120 at 1440; stacked below 1024 (assumed) */
   --sbs-half-min-width: 328px; /* i-sbs-half-minimum-width */
+  --sbs-thirds-gutter: 32px; /* Type=Thirds gap 72 at 1440 */
   --header-gutter: 40px; /* i-header-gutter */
   --header-button-padding: 12px; /* i-header-button-padding 12 (mobile nav) / 16 */
   --content-max-width: 1248px; /* 1440 - 2 x 96 */
@@ -127,6 +131,10 @@
   --divider-color-faq: #1414141a; /* FAQ dividers */
   --hero-min-height: 700px; /* i-hero */
   --hero-lockup-width: 718px;
+  --hero-lockup-center-width: 1024px; /* .intact-hero-lockup Alignment=Center */
+  --hero-illustration-width: 408px; /* Hero Style=Simple with illustration */
+  --hero-breadcrumb-row: 72px; /* i-breadcrumbs row above Simple heroes */
+  --tag-height: 32px; /* i-tag Size=32 */
   --center-copy-max-width: 728px; /* S08 body */
   --hero-button-min-width: 144px;
 
@@ -142,6 +150,8 @@
 
 @media (width >= 744px) {
   :root {
+    --type-display-size: 48px; /* Hero Style=Half (Tablet and Mobile only), 744 */
+    --type-display-line-height: 52px;
     --page-padding-x: 40px;
     --container-padding: 40px;
     --device-width: 744px;
@@ -157,6 +167,9 @@
     --v-spacing-s: 16px;
     --v-spacing-xs: 8px;
     --sbs-gutter: 64px;
+    --sbs-thirds-gutter: 48px;
+    --type-heading-l-size: 48px;
+    --type-heading-l-line-height: 52px;
     --header-button-padding: 16px;
     --type-display-size: 64px;
     --type-display-line-height: 68px;
@@ -173,6 +186,7 @@
     --page-padding-x: 96px;
     --v-spacing-xl: 64px;
     --sbs-gutter: 120px;
+    --sbs-thirds-gutter: 72px;
     --device-width: 1440px;
   }
 }

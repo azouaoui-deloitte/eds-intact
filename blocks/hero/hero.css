@@ -6,12 +6,15 @@ main > .section.hero-container > .hero-wrapper {
   max-width: none;
 }
 
+/* base = Figma Hero Style "Left on image" */
 .hero {
   --hero-gradient: linear-gradient(to right, rgb(0 0 0 / 50%) 0, rgb(0 0 0 / 50%) 50%, rgb(0 0 0 / 0%) 100%);
+  --hero-lockup-max: var(--hero-lockup-width);
 
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   box-sizing: border-box;
   min-height: calc(var(--hero-min-height) * 0.5);
   padding: var(--size-32) var(--page-padding-x);
@@ -47,6 +50,7 @@ main > .section.hero-container > .hero-wrapper {
 .hero .hero-lockup {
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
   width: 100%;
   max-width: var(--content-max-width);
   margin: 0 auto;
@@ -56,11 +60,12 @@ main > .section.hero-container > .hero-wrapper {
   display: flex;
   flex-direction: column;
   gap: var(--v-spacing-m);
-  max-width: var(--hero-lockup-width);
+  max-width: var(--hero-lockup-max);
 }
 
-.hero h1 {
-  color: var(--color-white);
+.hero h1,
+.hero h2 {
+  color: inherit;
   font-size: var(--type-display-size);
   line-height: var(--type-display-line-height);
   letter-spacing: var(--type-display-letter-spacing);
@@ -71,6 +76,28 @@ main > .section.hero-container > .hero-wrapper {
   line-height: var(--type-body-line-height);
 }
 
+.hero .hero-tag {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  box-sizing: border-box;
+  height: var(--tag-height);
+  padding: 0 calc(var(--size-12) - var(--border-xs));
+  border: var(--border-xs) solid var(--color-tag-border);
+  border-radius: var(--radius-pill);
+  font-weight: var(--font-weight-regular);
+}
+
+.hero .hero-body {
+  font-size: var(--type-label-lg-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--type-label-lg-line-height);
+}
+
+.hero .hero-note {
+  color: var(--color-neutral-800);
+}
+
 .hero .hero-button-group {
   display: flex;
   flex-direction: column;
@@ -79,6 +106,7 @@ main > .section.hero-container > .hero-wrapper {
 
 .hero .hero-group-label {
   font-size: var(--type-label-md-size);
+  font-weight: var(--font-weight-bold);
   line-height: var(--type-label-md-line-height);
 }
 
@@ -100,8 +128,189 @@ main > .section.hero-container > .hero-wrapper {
   text-decoration: none;
 }
 
+.hero.reversed {
+  --color-tag-border: var(--color-link-reversed-hover);
+}
+
+.hero:not(.reversed) {
+  --color-tag-border: var(--color-tag-border-default);
+
+  background-color: var(--color-sand);
+  color: var(--color-surface-dark);
+}
+
+/* centred lockups */
+.hero.center-on-image,
+.hero.in-container,
+.hero.center-on-solid,
+.hero.center-full-width-image,
+.hero.simple,
+.hero.simple-with-illustration {
+  --hero-lockup-max: var(--hero-lockup-center-width);
+
+  text-align: center;
+}
+
+.hero.center-on-image .hero-lockup > div,
+.hero.in-container .hero-lockup > div,
+.hero.center-on-solid .hero-lockup > div,
+.hero.center-full-width-image .hero-lockup > div,
+.hero.simple .hero-lockup > div,
+.hero.simple-with-illustration .hero-lockup > div {
+  align-items: center;
+  margin: 0 auto;
+}
+
+.hero.center-on-image .hero-tag,
+.hero.in-container .hero-tag,
+.hero.center-on-solid .hero-tag,
+.hero.center-full-width-image .hero-tag,
+.hero.simple .hero-tag,
+.hero.simple-with-illustration .hero-tag {
+  align-self: center;
+}
+
+.hero.center-on-image .hero-buttons,
+.hero.in-container .hero-buttons,
+.hero.center-on-solid .hero-buttons,
+.hero.center-full-width-image .hero-buttons,
+.hero.simple .hero-buttons,
+.hero.simple-with-illustration .hero-buttons {
+  justify-content: center;
+}
+
+.hero.center-on-image,
+.hero.in-container {
+  --hero-gradient: linear-gradient(rgb(0 0 0 / 50%), rgb(0 0 0 / 50%));
+}
+
+.hero.center-on-image {
+  padding-block: var(--size-24);
+}
+
+/* In container: image card on sand */
+.hero.in-container {
+  padding: var(--v-spacing-xl) var(--page-padding-x);
+  background-color: var(--color-sand);
+}
+
+.hero.in-container .hero-media {
+  inset: var(--v-spacing-xl) var(--page-padding-x);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: var(--color-overlay);
+}
+
+.hero.in-container .hero-lockup {
+  padding: var(--size-24);
+}
+
+/* image below the lockup */
+.hero.center-on-solid,
+.hero.center-full-width-image {
+  gap: var(--size-48);
+  padding: var(--v-spacing-xl) var(--page-padding-x);
+}
+
+.hero.center-full-width-image {
+  padding-bottom: 0;
+}
+
+.hero.center-on-solid .hero-media,
+.hero.center-full-width-image .hero-media,
+.hero.half .hero-media,
+.hero.simple-with-illustration .hero-media {
+  position: relative;
+  inset: auto;
+  order: 2;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.hero.center-on-solid .hero-media::after,
+.hero.center-full-width-image .hero-media::after,
+.hero.half .hero-media::after,
+.hero.simple-with-illustration .hero-media::after {
+  content: none;
+}
+
+.hero.center-on-solid .hero-media img {
+  aspect-ratio: 26 / 15;
+  height: auto;
+}
+
+.hero.center-full-width-image .hero-media img {
+  aspect-ratio: 2;
+  height: auto;
+}
+
+.hero.center-on-solid .hero-media img,
+.hero.half .hero-media img {
+  border-radius: var(--radius-md);
+}
+
+.hero.center-full-width-image .hero-media {
+  width: calc(100% + 2 * var(--page-padding-x));
+  max-width: none;
+  margin-inline: calc(-1 * var(--page-padding-x));
+}
+
+/* Half: lockup left, square image right */
+.hero.half .hero-media img {
+  aspect-ratio: 1;
+  height: auto;
+}
+
+/* Simple (no image) and Simple with illustration */
+.hero.simple,
+.hero.simple-with-illustration {
+  min-height: 0;
+  padding: var(--hero-breadcrumb-row) var(--page-padding-x) var(--v-spacing-xl);
+}
+
+.hero.simple-with-illustration .hero-lockup {
+  padding-top: var(--v-spacing-m);
+}
+
+.hero.simple-with-illustration .hero-media {
+  order: -1;
+  max-width: var(--hero-illustration-width);
+}
+
+.hero.simple-with-illustration .hero-media img {
+  object-fit: contain;
+}
+
+.hero.no-image .hero-media {
+  display: none;
+}
+
 @media (width >= 1024px) {
-  .hero {
+  .hero.left-on-image,
+  .hero.center-on-image,
+  .hero.in-container,
+  .hero.half {
     min-height: var(--hero-min-height);
+  }
+
+  .hero.half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    column-gap: var(--size-24);
+    padding-inline: max(var(--page-padding-x), calc((100% - var(--content-max-width)) / 2));
+  }
+
+  .hero.half .hero-media {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+  }
+
+  .hero.half .hero-lockup {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
   }
 }

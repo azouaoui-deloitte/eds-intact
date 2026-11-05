@@ -33,6 +33,10 @@
                 {
                   "name": "In Container",
                   "value": "in-container"
+                },
+                {
+                  "name": "Thirds",
+                  "value": "thirds"
                 }
               ]
             },
@@ -49,6 +53,10 @@
               "name": "Theme",
               "children": [
                 {
+                  "name": "Sand (Primary/Sand)",
+                  "value": "sand"
+                },
+                {
                   "name": "Burgundy (surface/alternate/dark-2)",
                   "value": "burgundy"
                 },
@@ -59,6 +67,24 @@
                 {
                   "name": "White",
                   "value": "white"
+                }
+              ]
+            },
+            {
+              "name": "Image",
+              "children": [
+                {
+                  "name": "Bleed (illustration overflowing the block)",
+                  "value": "bleed"
+                }
+              ]
+            },
+            {
+              "name": "Buttons",
+              "children": [
+                {
+                  "name": "Size 56px (i-button Size=56px)",
+                  "value": "buttons-lg"
                 }
               ]
             }

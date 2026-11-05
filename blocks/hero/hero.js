@@ -1,22 +1,41 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
+const ON_IMAGE = ['left-on-image', 'center-on-image', 'in-container'];
+
 /**
  * Hero (Figma i-hero > .intact-hero-lockup > i-button-group).
- * Rows: image, text (heading, optional group label, buttons, optional phone line).
+ * Rows: image, tag, text (heading, body, fully bold group label, buttons, phone line).
  * @param {Element} block
  */
 export default function decorate(block) {
-  block.classList.add('reversed');
-  const [imageRow, textRow] = [...block.children];
-  imageRow?.classList.add('hero-media');
+  const [mediaRow, tagRow, textRow] = [...block.children];
+  if (!block.className.match(/\b(left|center|in-container|half|simple)/)) block.classList.add('left-on-image');
+  if (ON_IMAGE.some((style) => block.classList.contains(style))) block.classList.add('reversed');
+
+  mediaRow?.classList.add('hero-media');
+  if (!mediaRow?.querySelector('picture')) block.classList.add('no-image');
   const content = textRow?.firstElementChild;
   if (!content) return;
   textRow.classList.add('hero-lockup');
+
+  const tagText = tagRow?.textContent.trim();
+  if (tagText) {
+    const tag = document.createElement('p');
+    tag.className = 'hero-tag';
+    tag.textContent = tagText;
+    moveInstrumentation(tagRow.firstElementChild || tagRow, tag);
+    content.prepend(tag);
+  }
+  tagRow?.remove();
 
   const buttons = [...content.querySelectorAll(':scope > p.button-wrapper')];
   if (buttons.length) {
     const group = document.createElement('div');
     group.className = 'hero-button-group';
     const label = buttons[0].previousElementSibling;
-    if (label && label.tagName === 'P' && !label.classList.contains('button-wrapper')) {
+    if (label && label.tagName === 'P' && label.children.length === 1
+      && label.firstElementChild.tagName === 'STRONG' && !label.querySelector('a')
+      && label.textContent.trim() === label.firstElementChild.textContent.trim()) {
       label.classList.add('hero-group-label');
       group.append(label);
     }
@@ -25,7 +44,21 @@ export default function decorate(block) {
     buttons[0].before(group);
     row.append(...buttons);
     group.append(row);
-    const phone = group.nextElementSibling;
-    if (phone && phone.tagName === 'P') phone.classList.add('hero-phone');
+    let next = group.nextElementSibling;
+    if (next && next.tagName === 'P') {
+      next.classList.add('hero-phone');
+      next = next.nextElementSibling;
+    }
+    while (next) {
+      if (next.tagName === 'P') next.classList.add('hero-note');
+      next = next.nextElementSibling;
+    }
+  }
+
+  const heading = content.querySelector('h1, h2');
+  let body = heading?.nextElementSibling;
+  while (body && body.tagName === 'P' && !body.closest('.hero-button-group')) {
+    body.classList.add('hero-body');
+    body = body.nextElementSibling;
   }
 }
