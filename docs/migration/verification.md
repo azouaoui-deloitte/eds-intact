@@ -74,6 +74,24 @@ designer's frames (see `figma-vs-prod.md`, question 1).
 0 violations. Heading order H1 › H2 › H3; marquee is a focusable, labelled region and stops under
 `prefers-reduced-motion`; FAQ uses native `details` / `summary`; decorative pictograms have empty alt.
 
+## Library variants (`import-work/content/intact/en/component-variants`, local test page)
+
+Rendered against the main component variants (`import-work/figma/renders/variants/`, REST render of the 15 variant nodes)
+with Figma copy and solid placeholders of the same colour as the Figma image placeholders.
+
+| Variant | Height | Image / container box | Visual diff |
+|---|---|---|---|
+| side by side Default × Image Left / Right | 692 / 692 | Δ 0 | 1.3 % |
+| side by side In Container × Image Left / Right | 740 / 740 | Δ 0 | 1.2 % |
+| side by side Thirds × Image Left / Right | 677 / 677 | Δ ≤ 0.8 | 0.8 % |
+| hero Left on image, Center on image, In container, Half | 700 / 700 | Half image Δ 3 | 2.0–4.7 % |
+| hero Center full-width image | 1234 / 1240 | Δ 0 | 0.8 % |
+| hero Center on solid, Simple, Simple with illustration | −78, −68, +6 | — | 3.5–11 % |
+
+Remaining deltas are font- or content-driven: with the fallback serif the 64 px headline fits on one line where the
+Figma (Intact Serif) wraps to two (−68 px), and the test content omits the library-only list (`i-listcolumn`),
+breadcrumbs and contest notes.
+
 ## Universal Editor
 
 Blocked until AEM Code Sync is enabled on `eds-intact` (AEM cannot load the component models from the code bus).
