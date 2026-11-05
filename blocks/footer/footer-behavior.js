@@ -16,6 +16,62 @@ function initNotes(footer) {
   });
 }
 
+/* ---- design "User stories V2" (US-021, .footer-inner.us-v2) ---- */
+
+/** AC-06 / AC-07 / AC-11: region and language pills open a listbox of links */
+function initListboxes(footer) {
+  footer.querySelectorAll('.footer-selector[aria-haspopup="listbox"]').forEach((button) => {
+    const list = footer.querySelector(`#${button.getAttribute('aria-controls')}`);
+    if (!list) return;
+    const options = () => [...list.querySelectorAll('[role="option"]')];
+    const setOpen = (open, focus = true) => {
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      list.hidden = !open;
+      if (!focus) return;
+      if (open) (list.querySelector('[aria-selected="true"]') || options()[0])?.focus();
+      else button.focus();
+    };
+    button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+    list.addEventListener('keydown', (e) => {
+      const all = options();
+      const i = all.indexOf(document.activeElement);
+      const to = {
+        ArrowDown: i + 1, ArrowUp: i - 1, Home: 0, End: all.length - 1,
+      }[e.key];
+      if (e.key === 'Escape') {
+        e.stopPropagation();
+        setOpen(false);
+      } else if (to !== undefined) {
+        e.preventDefault();
+        all[Math.max(0, Math.min(all.length - 1, to))].focus();
+      }
+    });
+    button.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') setOpen(false);
+      if (e.key === 'ArrowDown' && button.getAttribute('aria-expanded') !== 'true') {
+        e.preventDefault();
+        setOpen(true);
+      }
+    });
+    document.addEventListener('click', (e) => {
+      const outside = !button.contains(e.target) && !list.contains(e.target);
+      if (button.getAttribute('aria-expanded') === 'true' && outside) setOpen(false, false);
+    });
+  });
+}
+
+/** AC-18: the opened legal notes are scrolled into view */
+function initNotesScroll(footer) {
+  const toggle = footer.querySelector('.footer-notes-toggle');
+  const panel = toggle && footer.querySelector(`#${toggle.getAttribute('aria-controls')}`);
+  if (!panel) return;
+  toggle.addEventListener('click', () => {
+    if (panel.hidden) return;
+    const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    panel.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'nearest' });
+  });
+}
+
 /**
  * @param {Element} footer the footer markup root (.footer-inner)
  */
@@ -23,4 +79,10 @@ export default function initFooter(footer) {
   if (!footer || footer.dataset.footerInit) return;
   footer.dataset.footerInit = 'true';
   initNotes(footer);
+  if (!footer.classList.contains('us-v2')) return;
+  // AC-11: the page <footer> landmark gets the authored label
+  const landmark = footer.closest('footer');
+  if (landmark && footer.dataset.ariaLabel) landmark.setAttribute('aria-label', footer.dataset.ariaLabel);
+  initListboxes(footer);
+  initNotesScroll(footer);
 }

@@ -422,3 +422,106 @@
     grid-column: auto;
   }
 }
+
+/*
+ * Design "User stories V2" (US-021, .footer-inner.us-v2): column headings white @ 70 %, 4 columns
+ * in a row from 1024 px and one stacked column below (AC-10), region / language listboxes
+ * (Figma Dropdown 40016965:29692), simple variant (AC-05).
+ */
+.footer-inner.us-v2 .footer-label {
+  color: rgb(255 255 255 / 70%);
+  text-transform: uppercase;
+}
+
+.footer-inner.us-v2 .footer-card {
+  overflow: visible;
+}
+
+.footer-inner.us-v2 .footer-pill {
+  position: relative;
+}
+
+.footer-inner.us-v2 .footer-selector[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.footer-inner.us-v2 .footer-listbox {
+  position: absolute;
+  inset-block-end: calc(100% + var(--size-16));
+  inset-inline-start: 0;
+  z-index: 5;
+  box-sizing: border-box;
+  min-inline-size: 252px;
+  max-block-size: min(70vh, 548px);
+  overflow-y: auto;
+  border-radius: var(--size-8);
+  padding: var(--size-8) var(--size-16);
+  background-color: var(--color-white);
+  box-shadow: 0 4px 20px rgb(51 51 51 / 13%);
+  color: var(--color-surface-dark);
+}
+
+.footer-inner.us-v2 .footer-listbox[hidden] {
+  display: none;
+}
+
+.footer-inner.us-v2 .footer-listbox a:any-link {
+  display: block;
+  border-block-end: var(--border-xs) solid var(--color-border-neutral-light);
+  padding: var(--size-12) 0;
+  color: var(--color-surface-dark);
+  font-size: var(--type-label-md-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--type-label-md-line-height);
+}
+
+.footer-inner.us-v2 .footer-listbox a[aria-selected="true"] {
+  color: var(--color-teal);
+}
+
+.footer-inner.us-v2 .footer-listbox a:focus-visible {
+  outline: var(--border-sm) solid var(--color-surface-dark);
+  outline-offset: calc(-1 * var(--border-sm));
+}
+
+.footer-inner.us-v2 .footer-listbox li:last-child a {
+  border-block-end: 0;
+}
+
+.footer-inner.us-v2 .footer-simple-links {
+  padding: var(--size-24) var(--page-padding-x) 0;
+}
+
+.footer-inner.us-v2[data-simple] .footer-legal-link {
+  color: inherit;
+}
+
+@media (width >= 744px) and (width < 1024px) {
+  .footer-inner.us-v2 .footer-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (width >= 1024px) {
+  .footer-inner.us-v2 .footer-columns {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .footer-inner.us-v2 .footer-aside {
+    grid-column: auto;
+  }
+
+  .footer-inner.us-v2[data-simple] .footer-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    min-block-size: 88px;
+    padding-inline: var(--page-padding-x);
+  }
+
+  .footer-inner.us-v2[data-simple] .footer-simple-links,
+  .footer-inner.us-v2[data-simple] .footer-copyright {
+    padding: 0;
+  }
+}

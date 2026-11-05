@@ -59,13 +59,18 @@ function disclosure(nav, button, panel, { onToggle, focusTarget, group } = {}) {
   return setOpen;
 }
 
-/** Desktop panels under the main bar: one mega menu (desktop menu selection) or the search */
+/**
+ * Desktop panels under the main bar: one mega menu (desktop menu selection) or the search
+ * @returns {{button: Element, panel: Element, setOpen: Function}[]} mega menu disclosures
+ */
 function initPanels(nav) {
   const group = [];
+  const menus = [];
   nav.querySelectorAll('.nav-menu-toggle').forEach((button) => {
     const panel = nav.querySelector(`#${button.getAttribute('aria-controls')}`);
     if (!panel) return;
     const setOpen = disclosure(nav, button, panel, { group });
+    menus.push({ button, panel, setOpen });
     isDesktop.addEventListener('change', () => { if (!isDesktop.matches) setOpen(false, false); });
   });
   const search = nav.querySelector('.nav-search-toggle');
@@ -76,16 +81,18 @@ function initPanels(nav) {
     });
     isDesktop.addEventListener('change', () => { if (!isDesktop.matches) setOpen(false, false); });
   }
+  return menus;
 }
 
 /**
- * Menu (hamburger): full-screen mobile / tablet lvl 1 and lvl 2 below 1024 px, desktop burger panel
- * from 1024 to 1439 px; nothing to open from 1440 px.
+ * Menu (hamburger): full-screen mobile / tablet lvl 1 and lvl 2 below `desktop`, desktop burger
+ * panel from `desktop` to `wide`; nothing to open from `wide` (default 1024 / 1440 px).
+ * @returns {(open: boolean, focus?: boolean) => void} drawer setter
  */
-function initDrawer(nav) {
+function initDrawer(nav, desktop = isDesktop, wide = isWide) {
   const button = nav.querySelector('.nav-hamburger');
   const drawer = nav.querySelector('#nav-drawer');
-  if (!button || !drawer) return;
+  if (!button || !drawer) return null;
   const main = drawer.querySelector('.nav-drawer-main');
   const back = drawer.querySelector('.nav-drawer-back');
   const backLabel = drawer.querySelector('.nav-drawer-back-label');
@@ -116,10 +123,10 @@ function initDrawer(nav) {
 
   const setOpen = disclosure(nav, button, drawer, {
     onToggle: (open) => {
-      document.body.classList.toggle('nav-drawer-open', open && !isDesktop.matches);
+      document.body.classList.toggle('nav-drawer-open', open && !desktop.matches);
       if (!open) showLevel(null, false);
     },
-    focusTarget: () => drawer.querySelector(isDesktop.matches ? 'input' : '.nav-drawer-close'),
+    focusTarget: () => drawer.querySelector(desktop.matches ? 'input' : '.nav-drawer-close'),
   });
   drawer.querySelector('.nav-drawer-close')?.addEventListener('click', () => setOpen(false));
   drawer.querySelectorAll('.nav-drawer-next').forEach((next) => {
@@ -131,10 +138,172 @@ function initDrawer(nav) {
   const segmentList = drawer.querySelector('#nav-drawer-segment-list');
   if (segmentToggle && segmentList) disclosure(drawer, segmentToggle, segmentList);
 
-  isDesktop.addEventListener('change', () => {
-    document.body.classList.toggle('nav-drawer-open', isOpen(button) && !isDesktop.matches);
+  desktop.addEventListener('change', () => {
+    document.body.classList.toggle('nav-drawer-open', isOpen(button) && !desktop.matches);
   });
-  isWide.addEventListener('change', () => { if (isWide.matches) setOpen(false, false); });
+  wide.addEventListener('change', () => { if (wide.matches) setOpen(false, false); });
+  return setOpen;
+}
+
+/* ---- design "User stories V2" (US-022, .i-nav.us-v2) ---- */
+
+const isDesktopLarge = window.matchMedia('(width >= 1280px)');
+const visible = (el) => el.getClientRects().length > 0 && !el.closest('[hidden]');
+
+/** AC-04: mega panel also opens on mouse hover of the item, closes when the pointer leaves */
+function initHover(menus) {
+  menus.forEach(({ button, panel, setOpen }) => {
+    const item = button.closest('li');
+    let timer;
+    let byHover = false;
+    const enter = () => {
+      clearTimeout(timer);
+      if (!isDesktop.matches || isOpen(button)) return;
+      byHover = true;
+      setOpen(true, false);
+    };
+    const leave = () => {
+      clearTimeout(timer);
+      if (!byHover) return;
+      timer = setTimeout(() => { byHover = false; setOpen(false, false); }, 200);
+    };
+    button.addEventListener('click', () => { byHover = false; });
+    [item, panel].forEach((el) => {
+      el.addEventListener('mouseenter', enter);
+      el.addEventListener('mouseleave', leave);
+    });
+  });
+}
+
+/** AC-12: Tab / Shift+Tab stay inside the open drawer */
+function initFocusTrap(nav) {
+  const button = nav.querySelector('.nav-hamburger');
+  const drawer = nav.querySelector('#nav-drawer');
+  if (!button || !drawer) return;
+  drawer.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !isOpen(button)) return;
+    const focusables = [...drawer.querySelectorAll('a[href], button, input')].filter(visible);
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+}
+
+const PROVINCE_KEY = 'intact-province';
+
+/** AC-16: province pill = listbox of links; the choice is stored and the option link navigates */
+function initProvince(nav) {
+  const pills = [...nav.querySelectorAll('.nav-province')];
+  const select = (code) => pills.forEach((pill) => {
+    const option = [...pill.querySelectorAll('[role="option"]')].find((o) => o.dataset.code === code);
+    if (!option) return;
+    pill.querySelectorAll('[role="option"]').forEach((o) => {
+      o.setAttribute('aria-selected', o === option ? 'true' : 'false');
+    });
+    pill.querySelector('.nav-province-current').textContent = code;
+  });
+  let stored = null;
+  try { stored = localStorage.getItem(PROVINCE_KEY); } catch { /* storage disabled */ }
+  if (stored) select(stored);
+  pills.forEach((pill) => {
+    const toggle = pill.querySelector('.nav-province-toggle');
+    const list = pill.querySelector('[role="listbox"]');
+    const options = () => [...list.querySelectorAll('[role="option"]')];
+    // bound on the pill: Escape closes the list only, not the drawer holding it
+    disclosure(pill, toggle, list, { focusTarget: () => list.querySelector('[aria-selected="true"]') || options()[0] });
+    list.addEventListener('keydown', (e) => {
+      const all = options();
+      const i = all.indexOf(document.activeElement);
+      const to = {
+        ArrowDown: i + 1, ArrowUp: i - 1, Home: 0, End: all.length - 1,
+      }[e.key];
+      if (to === undefined) return;
+      e.preventDefault();
+      all[Math.max(0, Math.min(all.length - 1, to))].focus();
+    });
+    list.addEventListener('click', (e) => {
+      const option = e.target.closest('[role="option"]');
+      if (!option) return;
+      try {
+        localStorage.setItem(PROVINCE_KEY, option.dataset.code);
+      } catch { /* storage disabled */ }
+      select(option.dataset.code);
+    });
+  });
+}
+
+/** AC-08: <results>?<param>=<encoded term>; native GET when no results page */
+function initSearch(nav) {
+  nav.querySelectorAll('.nav-search-form[data-search-results]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      const term = form.querySelector('input').value.trim();
+      if (!term) return;
+      e.preventDefault();
+      const url = new URL(form.dataset.searchResults, window.location.href);
+      url.search = `${encodeURIComponent(form.dataset.searchParam || 'q')}=${encodeURIComponent(term)}`;
+      window.location.assign(url.href);
+    });
+  });
+}
+
+/** AC-18: Login pointing to an Experience Fragment opens it in a modal */
+function initLoginModal(nav) {
+  nav.querySelectorAll('[data-login-xf]').forEach((link) => {
+    link.addEventListener('click', async (e) => {
+      e.preventDefault();
+      let dialog = document.getElementById('nav-login-dialog');
+      if (!dialog) {
+        dialog = document.createElement('dialog');
+        dialog.id = 'nav-login-dialog';
+        dialog.className = 'nav-login-dialog';
+        dialog.setAttribute('aria-label', link.textContent.trim());
+        const close = document.createElement('button');
+        close.type = 'button';
+        close.className = 'nav-login-dialog-close';
+        close.setAttribute('aria-label', link.dataset.closeLabel || '');
+        close.addEventListener('click', () => dialog.close());
+        dialog.append(close);
+        try {
+          const resp = await fetch(`${link.dataset.loginXf}.content.html?wcmmode=disabled`);
+          const doc = new DOMParser().parseFromString(await resp.text(), 'text/html');
+          const body = document.createElement('div');
+          body.className = 'nav-login-dialog-body';
+          body.append(...doc.body.childNodes);
+          dialog.append(body);
+        } catch { /* keeps the close button */ }
+        document.body.append(dialog);
+      }
+      dialog.showModal();
+    });
+  });
+}
+
+/** AC-19: variant from the page context (light hero > drop shadow); the primary nav is sticky */
+function initVariant(nav) {
+  const apply = () => {
+    const hero = document.querySelector('main .hero');
+    const light = !!hero && !hero.classList.contains('reversed');
+    nav.classList.toggle('variant-drop-shadow', light);
+    nav.classList.toggle('variant-light', !light);
+  };
+  nav.classList.add('variant-sticky');
+  apply();
+  window.addEventListener('load', apply, { once: true });
+}
+
+function initV2(nav, menus) {
+  initHover(menus);
+  initFocusTrap(nav);
+  initProvince(nav);
+  initSearch(nav);
+  initLoginModal(nav);
+  initVariant(nav);
 }
 
 /**
@@ -144,7 +313,11 @@ function initDrawer(nav) {
 export default function initHeader(nav) {
   if (!nav || nav.dataset.navInit) return;
   nav.dataset.navInit = 'true';
+  const v2 = nav.classList.contains('us-v2');
   initScroll(nav);
-  initPanels(nav);
-  initDrawer(nav);
+  const menus = initPanels(nav);
+  // V2: hamburger drawer (tablet pattern) up to 1279 px, desktop-large composition from 1280 px
+  if (v2) initDrawer(nav, isDesktopLarge, isDesktopLarge);
+  else initDrawer(nav);
+  if (v2) initV2(nav, menus);
 }
