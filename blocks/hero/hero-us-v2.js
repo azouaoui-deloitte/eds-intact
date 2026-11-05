@@ -7,7 +7,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  * classes, *Alt / *Text fields are grouped into their image / link cell).
  */
 const ROWS = ['desktopImage', 'tabletImage', 'mobileImage', 'video', 'mobileVideo', 'tag', 'pretitle',
-  'title', 'description', 'buttons', 'phoneLabel', 'phoneNumber', 'textLink', 'scrollText', 'closingText'];
+  'title', 'description', 'buttons', 'phoneLabel', 'phoneNumber', 'textLink', 'scroll', 'closing'];
 
 const IMAGE_VARIANTS = ['center-on-image', 'center-on-solid', 'left-on-image', 'in-container', 'half',
   'center-full-width-image', 'simple-with-image'];
@@ -209,8 +209,8 @@ export default async function decorate(block) {
     p.append(link);
     content.append(p);
   }
-  if (!isEmpty(cells.scrollText)) content.append(fromText(cells.scrollText, 'p', 'hero-scroll'));
-  if (!isEmpty(cells.closingText)) content.append(keepCell(cells.closingText, 'hero-closing'));
+  if (!isEmpty(cells.scroll)) content.append(fromText(cells.scroll, 'p', 'hero-scroll'));
+  if (!isEmpty(cells.closing)) content.append(keepCell(cells.closing, 'hero-closing'));
 
   rows.forEach((row) => row.remove());
   block.prepend(media, lockup);

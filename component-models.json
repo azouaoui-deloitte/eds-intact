@@ -647,14 +647,14 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "scrollText",
+        "name": "scroll",
         "label": "Scroll text",
         "value": ""
       },
       {
         "component": "richtext",
         "valueType": "string",
-        "name": "closingText",
+        "name": "closing",
         "label": "Closing text (contest / legal copy, P1-P5 sizes)",
         "value": ""
       }
