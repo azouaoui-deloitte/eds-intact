@@ -1,0 +1,8 @@
+{
+  "mappings": [
+    "/content/intact/en/:/"
+  ],
+  "includes": [
+    "/content/intact/en/"
+  ]
+}
