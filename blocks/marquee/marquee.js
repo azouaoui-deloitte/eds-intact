@@ -30,4 +30,8 @@ export default function decorate(block) {
   viewport.className = 'marquee-viewport';
   viewport.append(track, clone);
   block.replaceChildren(viewport);
+  const heading = block.closest('.section')?.querySelector('h2');
+  block.setAttribute('role', 'region');
+  block.setAttribute('tabindex', '0');
+  if (heading) block.setAttribute('aria-label', heading.textContent.trim());
 }
