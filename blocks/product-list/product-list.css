@@ -60,6 +60,18 @@ main .section.product-list-container .default-content-wrapper h2 {
   line-height: var(--type-small-line-height);
 }
 
+/* PROVISIONAL (1440 frame only): the 181 x 64 pictogram scales down on mobile so the title keeps its column */
+@media (width < 744px) {
+  .product-list {
+    --product-pictogram-height: clamp(var(--size-32), 10vw, var(--size-64));
+    --product-pictogram-width: calc(var(--product-pictogram-height) * 181 / 64);
+  }
+
+  .product-list .product-list-pictogram img {
+    max-width: 100%;
+  }
+}
+
 @media (width >= 1024px) {
   .product-list .product-list-item {
     grid-template-columns: var(--product-pictogram-width) 1fr var(--product-description-width);
