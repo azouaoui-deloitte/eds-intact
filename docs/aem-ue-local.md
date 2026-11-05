@@ -24,6 +24,8 @@ Restart proxy + UES only (never AEM): `~/ue-service/daemon-start-scotia.sh resta
 | `/conf/intact/settings/wcm` (templates *Intact EDS Page*, *Intact XF*) | `aem-intact` ui.content | locked header / footer XFs in the page template structure |
 | `/content/experience-fragments/intact/en/site/{header,footer}/master` | `aem-intact` ui.content | AEM header / footer components |
 | `/content/intact/metadata` | `aem-intact` ui.content | bulk metadata: `nav` / `footer` → XF paths |
+| `/content/intact/en/demo-dynamic` | authored in AEM (excluded from the page package) | demo page: `stock-quote`, `cf-rates` blocks ([docs/demo](demo/)) |
+| `/conf/intact/settings/dam/cfm`, `/conf/intact/settings/graphql`, `/content/cq:graphql/intact`, `/content/dam/intact/demo` | `aem-intact` ui.content (merge) | CF model *Mortgage Rates*, persisted query `intact/mortgage-rates`, demo fragment (excluded from the page package) |
 
 Install / update the page package (filters `/conf/intact/settings/cloudconfigs`, `/content/intact` minus
 `/content/intact/metadata`, `/content/dam/intact`) and add the UE URL mapping without touching the other mappings:
