@@ -1,0 +1,1434 @@
+{
+ "stories": {
+  "US-022": "Intact Header Navigation (v5)",
+  "US-021": "Intact Footer (v8)",
+  "US-023": "Intact Hero Banner (v8)"
+ },
+ "groups": {
+  "AUTH": "Content model / authoring fields",
+  "VAR": "Variants",
+  "LAYOUT": "Layout per breakpoint",
+  "TOKENS": "Typography / tokens",
+  "STATES": "States / interactions",
+  "A11Y": "Accessibility",
+  "BEHAV": "Behaviour",
+  "SEO": "Analytics / SEO",
+  "NFR": "Performance / security / i18n"
+ },
+ "items": [
+  {
+   "id": "US-022.DF-brandName",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `brandName`: accessible brand name (header aria-label, logo fallback, default Intact)",
+   "source": "intact-header-navigation.md dialog_fields.brandName"
+  },
+  {
+   "id": "US-022.DF-logoFile",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `logoFile`: logo from the DAM (logoFileReference + logoFileName)",
+   "source": "intact-header-navigation.md dialog_fields.logoFile"
+  },
+  {
+   "id": "US-022.DF-logoAlt",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `logoAlt`: logo alternative text",
+   "source": "intact-header-navigation.md dialog_fields.logoAlt"
+  },
+  {
+   "id": "US-022.DF-logoLink",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `logoLink`: logo destination (pathfield, rootPath /content)",
+   "source": "intact-header-navigation.md dialog_fields.logoLink"
+  },
+  {
+   "id": "US-022.DF-nav",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `nav`: 3-level composite multifield: L1 label + link + hasMega; columns (heading + links L3); featured card (tag, title, text, image, link); max 5 L1",
+   "source": "intact-header-navigation.md dialog_fields.nav"
+  },
+  {
+   "id": "US-022.DF-searchResultsPath",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `searchResultsPath`: search results page",
+   "source": "intact-header-navigation.md dialog_fields.searchResultsPath"
+  },
+  {
+   "id": "US-022.DF-searchParamName",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `searchParamName`: query parameter name (default q)",
+   "source": "intact-header-navigation.md dialog_fields.searchParamName"
+  },
+  {
+   "id": "US-022.DF-searchLabel",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `searchLabel`: search accessible label",
+   "source": "intact-header-navigation.md dialog_fields.searchLabel"
+  },
+  {
+   "id": "US-022.DF-searchPlaceholder",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `searchPlaceholder`: search input placeholder",
+   "source": "intact-header-navigation.md dialog_fields.searchPlaceholder"
+  },
+  {
+   "id": "US-022.DF-ctaLabel",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `ctaLabel`: primary CTA label (i-button)",
+   "source": "intact-header-navigation.md dialog_fields.ctaLabel"
+  },
+  {
+   "id": "US-022.DF-ctaLink",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `ctaLink`: CTA destination",
+   "source": "intact-header-navigation.md dialog_fields.ctaLink"
+  },
+  {
+   "id": "US-022.DF-ctaTarget",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `ctaTarget`: CTA target select: same tab / _blank",
+   "source": "intact-header-navigation.md dialog_fields.ctaTarget"
+  },
+  {
+   "id": "US-022.DF-miniItems",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `miniItems`: mini bar / segment items: label, link, active",
+   "source": "intact-header-navigation.md dialog_fields.miniItems"
+  },
+  {
+   "id": "US-022.DF-utilityItems",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `utilityItems`: utility links (FR / Help / Login): label, link",
+   "source": "intact-header-navigation.md dialog_fields.utilityItems"
+  },
+  {
+   "id": "US-022.DF-showProvince",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `showProvince`: show the province selector pill (desktop utility row + hamburger menu)",
+   "source": "intact-header-navigation.md dialog_fields.showProvince"
+  },
+  {
+   "id": "US-022.DF-provinceLabel",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `provinceLabel`: current province shown on the pill",
+   "source": "intact-header-navigation.md dialog_fields.provinceLabel"
+  },
+  {
+   "id": "US-022.DF-provinceOptions",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `provinceOptions`: province options: label + link",
+   "source": "intact-header-navigation.md dialog_fields.provinceOptions"
+  },
+  {
+   "id": "US-022.DF-loginLink",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog field `loginLink`: Login destination; an XF path opens in a modal (AEM-119)",
+   "source": "intact-header-navigation.md dialog_fields.loginLink"
+  },
+  {
+   "id": "US-022.AC-01",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Author configures logo, mini bar, nav (mega columns + featured card), utility, search, CTA in the dialog; render = authored values, no hardcoded brand strings",
+   "source": "intact-header-navigation.md AC-01"
+  },
+  {
+   "id": "US-022.AC-15",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Nav persists as real JCR child nodes (nav/itemN > columns/itemM > links/itemK), reorderable, dialog round-trip shows rendered values",
+   "source": "intact-header-navigation.md AC-15"
+  },
+  {
+   "id": "US-022.AN-tabs",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Dialog tabs Logo, Navigation, Search, CTA, Mini & Utility",
+   "source": "intact-header-navigation.md Authoring model"
+  },
+  {
+   "id": "US-022.AC-19",
+   "story": "US-022",
+   "group": "AUTH",
+   "requirement": "Header picks its visual variant (light / dark / sticky / drop-shadow) from page context (e.g. drop-shadow when the hero is light), no per-page author choice",
+   "source": "intact-header-navigation.md AC-19"
+  },
+  {
+   "id": "US-022.VAR-plain-link-item",
+   "story": "US-022",
+   "group": "VAR",
+   "requirement": "Variant `plain-link-item`: L1 item = label + link",
+   "source": "intact-header-navigation.md variants.plain-link-item"
+  },
+  {
+   "id": "US-022.VAR-mega-menu-item",
+   "story": "US-022",
+   "group": "VAR",
+   "requirement": "Variant `mega-menu-item`: L1 item with hasMega: label link + separate expand arrow + mega overlay",
+   "source": "intact-header-navigation.md variants.mega-menu-item"
+  },
+  {
+   "id": "US-022.VAR-variant-light",
+   "story": "US-022",
+   "group": "VAR",
+   "requirement": "Variant `variant-light`: light header variant",
+   "source": "intact-header-navigation.md variants.variant-light"
+  },
+  {
+   "id": "US-022.VAR-variant-dark",
+   "story": "US-022",
+   "group": "VAR",
+   "requirement": "Variant `variant-dark`: dark header variant",
+   "source": "intact-header-navigation.md variants.variant-dark"
+  },
+  {
+   "id": "US-022.VAR-variant-sticky",
+   "story": "US-022",
+   "group": "VAR",
+   "requirement": "Variant `variant-sticky`: sticky variant (primary nav sticky)",
+   "source": "intact-header-navigation.md variants.variant-sticky"
+  },
+  {
+   "id": "US-022.VAR-variant-drop-shadow",
+   "story": "US-022",
+   "group": "VAR",
+   "requirement": "Variant `variant-drop-shadow`: drop-shadow variant (light hero, AEM-271)",
+   "source": "intact-header-navigation.md variants.variant-drop-shadow"
+  },
+  {
+   "id": "US-022.AC-02a",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "Utility bar (#1A1A1A, white 12/18, active item) at the very top of every page at every breakpoint incl. mobile/tablet; not sticky; not moved into the drawer",
+   "source": "intact-header-navigation.md AC-02"
+  },
+  {
+   "id": "US-022.AC-02b",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "Tablet / mobile drawer additionally shows the same items as the \"Personal\" segment dropdown at the top",
+   "source": "intact-header-navigation.md AC-02"
+  },
+  {
+   "id": "US-022.AC-03a",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "desktop-large (>=1440): 96px (32 + 64), inline nav, inline utility (FR/Help/Login), search icon, CTA",
+   "source": "intact-header-navigation.md AC-03"
+  },
+  {
+   "id": "US-022.AC-03b",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "desktop-medium-large (1280-1439): same inline nav, mega-menu and CTA as desktop-large, desktop-medium padding",
+   "source": "intact-header-navigation.md AC-03 / DEC-001 (tentative)"
+  },
+  {
+   "id": "US-022.AC-03c",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "desktop-medium (1024-1279): tablet hamburger composition (logo + inline nav + CTA + hamburger covering utility and search)",
+   "source": "intact-header-navigation.md AC-03 / DEC-001"
+  },
+  {
+   "id": "US-022.AC-03d",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "tablet (744-1023): 64px main bar, logo + inline primary nav + CTA + hamburger (CONFLICT flagged by the story: Session 1 doc + Figma show no inline nav)",
+   "source": "intact-header-navigation.md AC-03 + Assumptions (conflict)"
+  },
+  {
+   "id": "US-022.AC-03e",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "mobile (<=743): 64px main bar, logo + CTA + hamburger only, below the always-visible utility bar",
+   "source": "intact-header-navigation.md AC-03"
+  },
+  {
+   "id": "US-022.AN-padding",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "Horizontal padding 24 (tablet) > 48 (desktop-medium, incl. 1280-1439) > 96 (desktop-large); inner content max-width 1416 centred",
+   "source": "intact-header-navigation.md Anatomy (responsive heights)"
+  },
+  {
+   "id": "US-022.AC-04b",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "Mega panel full width: up to 3 link columns + featured card slot",
+   "source": "intact-header-navigation.md AC-04 / Anatomy"
+  },
+  {
+   "id": "US-022.AC-06a",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "Mobile L1 drawer is full-screen (covers the entire viewport)",
+   "source": "intact-header-navigation.md AC-06"
+  },
+  {
+   "id": "US-022.AC-09b",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "CTA pinned to the bottom of the open drawer at tablet and mobile",
+   "source": "intact-header-navigation.md AC-09"
+  },
+  {
+   "id": "US-022.AC-20",
+   "story": "US-022",
+   "group": "LAYOUT",
+   "requirement": "Max 5 L1 items; all 5 fit at every breakpoint (mobile > desktop-large), en and fr, no overlap / truncation",
+   "source": "intact-header-navigation.md AC-20"
+  },
+  {
+   "id": "US-022.AN-mainbar",
+   "story": "US-022",
+   "group": "TOKENS",
+   "requirement": "Main bar white, shadow-header 0 4px 20px rgba(51,51,51,.13), bottom hairline",
+   "source": "intact-header-navigation.md Anatomy"
+  },
+  {
+   "id": "US-022.AN-logo",
+   "story": "US-022",
+   "group": "TOKENS",
+   "requirement": "Red Intact logo 40px high (#DF0030), nav row gap 24, right group gap 24",
+   "source": "intact-header-navigation.md Anatomy"
+  },
+  {
+   "id": "US-022.AN-cta",
+   "story": "US-022",
+   "group": "TOKENS",
+   "requirement": "CTA i-button #DF0030, white bold 16/20, height 40, radius 8",
+   "source": "intact-header-navigation.md Anatomy"
+  },
+  {
+   "id": "US-022.AN-featured",
+   "story": "US-022",
+   "group": "TOKENS",
+   "requirement": "Featured card: FEATURED tag pill, serif title, description, circular arrow, image",
+   "source": "intact-header-navigation.md Anatomy / AC-04"
+  },
+  {
+   "id": "US-022.AC-04a",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "Mega item label is a link to the item page (navigates)",
+   "source": "intact-header-navigation.md AC-04"
+  },
+  {
+   "id": "US-022.AC-04c",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "Separate expand arrow (or mouse hover) toggles the mega panel; arrow rotates; aria-expanded true",
+   "source": "intact-header-navigation.md AC-04"
+  },
+  {
+   "id": "US-022.AC-04d",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "Opening one panel closes the others; outside click and ESC close",
+   "source": "intact-header-navigation.md AC-04"
+  },
+  {
+   "id": "US-022.AC-05",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "desktop-medium hamburger opens the tablet drawer (nav + utility + search), not an overflow-only panel",
+   "source": "intact-header-navigation.md AC-05"
+  },
+  {
+   "id": "US-022.AC-06b",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "Mobile L1: segment dropdown + Close, nav items (chevrons on mega items), utility links, search field, CTA",
+   "source": "intact-header-navigation.md AC-06"
+  },
+  {
+   "id": "US-022.AC-06c",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "Chevron slides to L2 (columns + featured card + Back); Close dismisses; body scroll locked",
+   "source": "intact-header-navigation.md AC-06"
+  },
+  {
+   "id": "US-022.AC-07",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "Tablet L1 (segment dropdown, utility, search, CTA at bottom) > L2 (columns + featured + Back)",
+   "source": "intact-header-navigation.md AC-07"
+  },
+  {
+   "id": "US-022.AC-11",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "Segment control is an operable dropdown listing miniItems, reflects the active one, selecting navigates to its landing page",
+   "source": "intact-header-navigation.md AC-11"
+  },
+  {
+   "id": "US-022.AC-16",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "showProvince: province pill in desktop utility row and in the hamburger menu; selection persisted and redirects to the equivalent page",
+   "source": "intact-header-navigation.md AC-16"
+  },
+  {
+   "id": "US-022.AC-17",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "Each submenu (mega + drawer L2) includes a link back to the parent item landing page",
+   "source": "intact-header-navigation.md AC-17"
+  },
+  {
+   "id": "US-022.AC-18",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "Login with an Experience Fragment destination opens in a modal",
+   "source": "intact-header-navigation.md AC-18"
+  },
+  {
+   "id": "US-022.ST-empty",
+   "story": "US-022",
+   "group": "STATES",
+   "requirement": "Empty: shell (utility + main bar) still renders, logo area empty, accessible name falls back to brandName",
+   "source": "intact-header-navigation.md States / Empty"
+  },
+  {
+   "id": "US-022.AC-08",
+   "story": "US-022",
+   "group": "BEHAV",
+   "requirement": "Search submits to <searchResultsPath>.html?<searchParamName>=<encoded term>, default q, native GET fallback",
+   "source": "intact-header-navigation.md AC-08"
+  },
+  {
+   "id": "US-022.AC-09a",
+   "story": "US-022",
+   "group": "BEHAV",
+   "requirement": "CTA renders authored label/link; _blank opens a new tab with rel noopener",
+   "source": "intact-header-navigation.md AC-09"
+  },
+  {
+   "id": "US-022.AC-10",
+   "story": "US-022",
+   "group": "BEHAV",
+   "requirement": "Logo = authored DAM image with logoAlt, links to logoLink; no asset > empty logo area + brandName fallback",
+   "source": "intact-header-navigation.md AC-10"
+  },
+  {
+   "id": "US-022.AN-panelId",
+   "story": "US-022",
+   "group": "BEHAV",
+   "requirement": "Triggers pair to panels by a stable panelId in JCR order",
+   "source": "intact-header-navigation.md Behavior"
+  },
+  {
+   "id": "US-022.AC-12a",
+   "story": "US-022",
+   "group": "A11Y",
+   "requirement": "Single <header> landmark containing a <nav>; nav groups are lists of <a>",
+   "source": "intact-header-navigation.md AC-12"
+  },
+  {
+   "id": "US-022.AC-12b",
+   "story": "US-022",
+   "group": "A11Y",
+   "requirement": "Every menu / drawer / segment toggle is a <button> with an accessible name and aria-expanded",
+   "source": "intact-header-navigation.md AC-12"
+  },
+  {
+   "id": "US-022.AC-12c",
+   "story": "US-022",
+   "group": "A11Y",
+   "requirement": "Mega item: Tab reaches the label (Enter navigates), Tab again reaches a separate arrow shown only on keyboard focus; Enter opens",
+   "source": "intact-header-navigation.md AC-12"
+  },
+  {
+   "id": "US-022.AC-12d",
+   "story": "US-022",
+   "group": "A11Y",
+   "requirement": "ESC closes mega / panel / drawer and returns focus to its trigger (the arrow for a mega submenu)",
+   "source": "intact-header-navigation.md AC-12"
+  },
+  {
+   "id": "US-022.AC-12e",
+   "story": "US-022",
+   "group": "A11Y",
+   "requirement": "Focus trapped in the open mobile / tablet drawer; Back reachable by keyboard",
+   "source": "intact-header-navigation.md AC-12"
+  },
+  {
+   "id": "US-022.AC-12f",
+   "story": "US-022",
+   "group": "A11Y",
+   "requirement": "Focus indicators >= 3:1 contrast",
+   "source": "intact-header-navigation.md AC-12"
+  },
+  {
+   "id": "US-022.AC-NFR-03",
+   "story": "US-022",
+   "group": "A11Y",
+   "requirement": "axe-core: 0 critical / serious at the 5 breakpoints, mega open, drawer L1 and L2",
+   "source": "intact-header-navigation.md AC-NFR-03"
+  },
+  {
+   "id": "US-022.NFR-target",
+   "story": "US-022",
+   "group": "A11Y",
+   "requirement": "Target sizes meet WCAG 2.2 AA (>= 24 x 24)",
+   "source": "intact-header-navigation.md NFR Accessibility"
+  },
+  {
+   "id": "US-022.AC-13",
+   "story": "US-022",
+   "group": "SEO",
+   "requirement": "All nav / utility / logo / CTA destinations are crawlable <a href> in the server-rendered HTML of every page; one <header>; logo > home",
+   "source": "intact-header-navigation.md AC-13"
+  },
+  {
+   "id": "US-022.NFR-analytics",
+   "story": "US-022",
+   "group": "SEO",
+   "requirement": "No header analytics events (open question; only if supplied later)",
+   "source": "intact-header-navigation.md NFR Analytics"
+  },
+  {
+   "id": "US-022.AC-14",
+   "story": "US-022",
+   "group": "NFR",
+   "requirement": "No hardcoded user-facing strings in HTL; FR is a configurable link",
+   "source": "intact-header-navigation.md AC-14"
+  },
+  {
+   "id": "US-022.AC-NFR-01a",
+   "story": "US-022",
+   "group": "NFR",
+   "requirement": "Header CSS + header.js <= 25 KB gzipped",
+   "source": "intact-header-navigation.md AC-NFR-01"
+  },
+  {
+   "id": "US-022.AC-NFR-01b",
+   "story": "US-022",
+   "group": "NFR",
+   "requirement": "Logo <img> has width/height; header CLS = 0; mega / drawer content in the initial HTML (no fetch on open)",
+   "source": "intact-header-navigation.md AC-NFR-01"
+  },
+  {
+   "id": "US-022.AC-NFR-02",
+   "story": "US-022",
+   "group": "NFR",
+   "requirement": "Author URLs context-encoded; javascript: and other unsafe schemes neutralized",
+   "source": "intact-header-navigation.md AC-NFR-02"
+  },
+  {
+   "id": "US-021.DF-backgroundVariant",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `backgroundVariant`: select default / scrolled-red / scrolled-sand",
+   "source": "intact-footer.md dialog_fields.backgroundVariant"
+  },
+  {
+   "id": "US-021.DF-simple",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `simple`: checkbox: sand copyright band only",
+   "source": "intact-footer.md dialog_fields.simple"
+  },
+  {
+   "id": "US-021.DF-ariaLabel",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `ariaLabel`: footer landmark label (default Footer)",
+   "source": "intact-footer.md dialog_fields.ariaLabel"
+  },
+  {
+   "id": "US-021.DF-columns",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `columns`: link columns 1-7: heading + links (label req, link, newWindow)",
+   "source": "intact-footer.md dialog_fields.columns"
+  },
+  {
+   "id": "US-021.DF-portalHeading",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `portalHeading`: e.g. INTACT PORTAL",
+   "source": "intact-footer.md dialog_fields.portalHeading"
+  },
+  {
+   "id": "US-021.DF-portalLinks",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `portalLinks`: label + link + newWindow",
+   "source": "intact-footer.md dialog_fields.portalLinks"
+  },
+  {
+   "id": "US-021.DF-socialHeading",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `socialHeading`: e.g. SOCIAL MEDIA",
+   "source": "intact-footer.md dialog_fields.socialHeading"
+  },
+  {
+   "id": "US-021.DF-socialLinks",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `socialLinks`: icon (facebook/x/linkedin/instagram/youtube) + link + ariaLabel",
+   "source": "intact-footer.md dialog_fields.socialLinks"
+  },
+  {
+   "id": "US-021.DF-appHeading",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `appHeading`: e.g. DOWNLOAD THE APP",
+   "source": "intact-footer.md dialog_fields.appHeading"
+  },
+  {
+   "id": "US-021.DF-appStoreImage",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `appStoreImage`: App Store badge image (DAM)",
+   "source": "intact-footer.md dialog_fields.appStoreImage"
+  },
+  {
+   "id": "US-021.DF-appStoreLink",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `appStoreLink`: App Store destination",
+   "source": "intact-footer.md dialog_fields.appStoreLink"
+  },
+  {
+   "id": "US-021.DF-googlePlayImage",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `googlePlayImage`: Google Play badge image (DAM)",
+   "source": "intact-footer.md dialog_fields.googlePlayImage"
+  },
+  {
+   "id": "US-021.DF-googlePlayLink",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `googlePlayLink`: Google Play destination",
+   "source": "intact-footer.md dialog_fields.googlePlayLink"
+  },
+  {
+   "id": "US-021.DF-showRegion",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `showRegion`: show the region selector pill",
+   "source": "intact-footer.md dialog_fields.showRegion"
+  },
+  {
+   "id": "US-021.DF-regionLabel",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `regionLabel`: current region on the pill",
+   "source": "intact-footer.md dialog_fields.regionLabel"
+  },
+  {
+   "id": "US-021.DF-regionOptions",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `regionOptions`: region options (Quebec ... Yukon): label + link",
+   "source": "intact-footer.md dialog_fields.regionOptions"
+  },
+  {
+   "id": "US-021.DF-languageLabel",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `languageLabel`: current language on the pill",
+   "source": "intact-footer.md dialog_fields.languageLabel"
+  },
+  {
+   "id": "US-021.DF-languageLinks",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `languageLinks`: language options FR / EN: label + link",
+   "source": "intact-footer.md dialog_fields.languageLinks"
+  },
+  {
+   "id": "US-021.DF-bottomLinks",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `bottomLinks`: Sitemap, Legal, Privacy, Accessibility, Customer Satisfaction",
+   "source": "intact-footer.md dialog_fields.bottomLinks"
+  },
+  {
+   "id": "US-021.DF-alsoOfInterest",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `alsoOfInterest`: 'Also of interest' links in the sand band",
+   "source": "intact-footer.md dialog_fields.alsoOfInterest"
+  },
+  {
+   "id": "US-021.DF-legalLabel",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `legalLabel`: legal accordion toggle label (default Legal notes)",
+   "source": "intact-footer.md dialog_fields.legalLabel"
+  },
+  {
+   "id": "US-021.DF-legalOpen",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `legalOpen`: legal notes open by default",
+   "source": "intact-footer.md dialog_fields.legalOpen"
+  },
+  {
+   "id": "US-021.DF-legalBody",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `legalBody`: legal disclaimer rich text",
+   "source": "intact-footer.md dialog_fields.legalBody"
+  },
+  {
+   "id": "US-021.DF-copyright",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `copyright`: copyright line (required)",
+   "source": "intact-footer.md dialog_fields.copyright"
+  },
+  {
+   "id": "US-021.DF-logoFile",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `logoFile`: footer logo from the DAM",
+   "source": "intact-footer.md dialog_fields.logoFile"
+  },
+  {
+   "id": "US-021.DF-logoAlt",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `logoAlt`: logo alt text",
+   "source": "intact-footer.md dialog_fields.logoAlt"
+  },
+  {
+   "id": "US-021.DF-logoLink",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Dialog field `logoLink`: logo destination",
+   "source": "intact-footer.md dialog_fields.logoLink"
+  },
+  {
+   "id": "US-021.AC-01",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Seven dialog tabs (General, Link Columns, Portal & Social, Locale, Bottom Links, Legal Notes, Logo); render = authored values, no hardcoded brand content",
+   "source": "intact-footer.md AC-01"
+  },
+  {
+   "id": "US-021.AC-14",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Columns, portal/social, region/language, bottom links, also-of-interest persist as JCR child nodes, reorderable, round-trip",
+   "source": "intact-footer.md AC-14"
+  },
+  {
+   "id": "US-021.AC-17",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "1-7 link columns; portal / social / app optional, always last, right-aligned on desktop",
+   "source": "intact-footer.md AC-17"
+  },
+  {
+   "id": "US-021.AC-20",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Personal and commercial pages use different footers through their own template + footer XF",
+   "source": "intact-footer.md AC-20"
+  },
+  {
+   "id": "US-021.AN-columns",
+   "story": "US-021",
+   "group": "AUTH",
+   "requirement": "Column set PRODUCTS, QUICK LINKS, ABOUT + 4th column (INTACT PORTAL, SOCIAL MEDIA, DOWNLOAD THE APP)",
+   "source": "intact-footer.md Anatomy A"
+  },
+  {
+   "id": "US-021.VAR-default",
+   "story": "US-021",
+   "group": "VAR",
+   "requirement": "Variant `default`: black surface + sand band",
+   "source": "intact-footer.md variants.default / AC-04 / AC-05"
+  },
+  {
+   "id": "US-021.VAR-scrolled-red",
+   "story": "US-021",
+   "group": "VAR",
+   "requirement": "Variant `scrolled-red`: red copyright band",
+   "source": "intact-footer.md variants.scrolled-red / AC-04 / AC-05"
+  },
+  {
+   "id": "US-021.VAR-scrolled-sand",
+   "story": "US-021",
+   "group": "VAR",
+   "requirement": "Variant `scrolled-sand`: sand band",
+   "source": "intact-footer.md variants.scrolled-sand / AC-04 / AC-05"
+  },
+  {
+   "id": "US-021.VAR-simple",
+   "story": "US-021",
+   "group": "VAR",
+   "requirement": "Variant `simple`: legal/copyright band only",
+   "source": "intact-footer.md variants.simple / AC-04 / AC-05"
+  },
+  {
+   "id": "US-021.AC-04",
+   "story": "US-021",
+   "group": "VAR",
+   "requirement": "backgroundVariant class drives the copyright band colour",
+   "source": "intact-footer.md AC-04"
+  },
+  {
+   "id": "US-021.AC-05",
+   "story": "US-021",
+   "group": "VAR",
+   "requirement": "Simple: only the sand band (bottom links + logo + copyright), 88px desktop / 172px tablet-mobile",
+   "source": "intact-footer.md AC-05"
+  },
+  {
+   "id": "US-021.AC-02",
+   "story": "US-021",
+   "group": "LAYOUT",
+   "requirement": "Columns on the dark #1A1A1A surface; visible and stacked (no <details> accordion) at tablet / mobile",
+   "source": "intact-footer.md AC-02"
+  },
+  {
+   "id": "US-021.AC-03",
+   "story": "US-021",
+   "group": "LAYOUT",
+   "requirement": "4th column: portal links, SOCIAL MEDIA (5 icons), DOWNLOAD THE APP (2 badges)",
+   "source": "intact-footer.md AC-03"
+  },
+  {
+   "id": "US-021.AC-10",
+   "story": "US-021",
+   "group": "LAYOUT",
+   "requirement": "4 columns in a row at >= 1024; single stacked column below 1024; no horizontal scroll at 320",
+   "source": "intact-footer.md AC-10"
+  },
+  {
+   "id": "US-021.AC-15",
+   "story": "US-021",
+   "group": "LAYOUT",
+   "requirement": "Desktop: bottom links right-aligned on the actions row with the pills, Legal notes last; wrap at tablet / mobile",
+   "source": "intact-footer.md AC-15"
+  },
+  {
+   "id": "US-021.AC-09",
+   "story": "US-021",
+   "group": "LAYOUT",
+   "requirement": "Sand band: also-of-interest links, logo (-> logoLink), copyright",
+   "source": "intact-footer.md AC-09"
+  },
+  {
+   "id": "US-021.AN-type",
+   "story": "US-021",
+   "group": "TOKENS",
+   "requirement": "Headings uppercase white 12/18 @ .7 opacity; links white bold 16/20; bottom links / copyright 12/18",
+   "source": "intact-footer.md Anatomy"
+  },
+  {
+   "id": "US-021.AN-sand",
+   "story": "US-021",
+   "group": "TOKENS",
+   "requirement": "Sand band #F7F2EA, also-of-interest row bottom border #D8D8D8, logo ~92 x 40",
+   "source": "intact-footer.md Anatomy B"
+  },
+  {
+   "id": "US-021.AN-pills",
+   "story": "US-021",
+   "group": "TOKENS",
+   "requirement": "Region / language: outlined pills (\"Quebec v\", \"FR v\")",
+   "source": "intact-footer.md Anatomy A"
+  },
+  {
+   "id": "US-021.AC-06",
+   "story": "US-021",
+   "group": "STATES",
+   "requirement": "Region pill = button aria-haspopup=listbox opening the authored regions (12, Quebec ... Yukon); keyboard; outside click + ESC close; selecting navigates",
+   "source": "intact-footer.md AC-06"
+  },
+  {
+   "id": "US-021.AC-07",
+   "story": "US-021",
+   "group": "STATES",
+   "requirement": "Language pill = button aria-haspopup=listbox listing languageLinks (FR / EN); selecting navigates",
+   "source": "intact-footer.md AC-07"
+  },
+  {
+   "id": "US-021.AC-08",
+   "story": "US-021",
+   "group": "STATES",
+   "requirement": "Legal notes collapsed by default (unless legalOpen); toggle reveals the body, chevron flips, aria-expanded",
+   "source": "intact-footer.md AC-08"
+  },
+  {
+   "id": "US-021.AC-16",
+   "story": "US-021",
+   "group": "STATES",
+   "requirement": "Legal body expands full width inside the dark surface below the divider; superscript footnotes + trailing copyright; no belair copy",
+   "source": "intact-footer.md AC-16"
+  },
+  {
+   "id": "US-021.AC-18",
+   "story": "US-021",
+   "group": "STATES",
+   "requirement": "Opening Legal notes scrolls the expanded content into view",
+   "source": "intact-footer.md AC-18"
+  },
+  {
+   "id": "US-021.AC-19",
+   "story": "US-021",
+   "group": "STATES",
+   "requirement": "Copyright always rendered (legal notes collapsed or empty)",
+   "source": "intact-footer.md AC-19"
+  },
+  {
+   "id": "US-021.ST-empty",
+   "story": "US-021",
+   "group": "STATES",
+   "requirement": "Empty: shell still renders; label falls back to ariaLabel (Footer)",
+   "source": "intact-footer.md States / Empty"
+  },
+  {
+   "id": "US-021.AN-newWindow",
+   "story": "US-021",
+   "group": "BEHAV",
+   "requirement": "newWindow adds target=_blank; hrefs mapped to .html",
+   "source": "intact-footer.md Behavior"
+  },
+  {
+   "id": "US-021.AC-11a",
+   "story": "US-021",
+   "group": "A11Y",
+   "requirement": "Single <footer> landmark with an accessible label",
+   "source": "intact-footer.md AC-11"
+  },
+  {
+   "id": "US-021.AC-11b",
+   "story": "US-021",
+   "group": "A11Y",
+   "requirement": "Link groups are lists of <a>",
+   "source": "intact-footer.md AC-11"
+  },
+  {
+   "id": "US-021.AC-11c",
+   "story": "US-021",
+   "group": "A11Y",
+   "requirement": "Region / language controls are <button aria-haspopup=\"listbox\"> with aria-expanded",
+   "source": "intact-footer.md AC-11"
+  },
+  {
+   "id": "US-021.AC-11d",
+   "story": "US-021",
+   "group": "A11Y",
+   "requirement": "Legal toggle is a <button> with aria-expanded and aria-controls",
+   "source": "intact-footer.md AC-11"
+  },
+  {
+   "id": "US-021.AC-11e",
+   "story": "US-021",
+   "group": "A11Y",
+   "requirement": "Menus keyboard-operable with ESC close; focus indicators 3:1",
+   "source": "intact-footer.md AC-11"
+  },
+  {
+   "id": "US-021.AC-NFR-03",
+   "story": "US-021",
+   "group": "A11Y",
+   "requirement": "axe-core: 0 critical / serious at the 4 breakpoints, legal open and region open",
+   "source": "intact-footer.md AC-NFR-03"
+  },
+  {
+   "id": "US-021.AC-12",
+   "story": "US-021",
+   "group": "SEO",
+   "requirement": "All destinations crawlable <a href> in the server-rendered HTML; one <footer>; logo > home",
+   "source": "intact-footer.md AC-12"
+  },
+  {
+   "id": "US-021.NFR-analytics",
+   "story": "US-021",
+   "group": "SEO",
+   "requirement": "No footer analytics events (open question)",
+   "source": "intact-footer.md NFR Analytics"
+  },
+  {
+   "id": "US-021.AC-13",
+   "story": "US-021",
+   "group": "NFR",
+   "requirement": "No hardcoded strings in HTL; region / language are configurable links",
+   "source": "intact-footer.md AC-13"
+  },
+  {
+   "id": "US-021.AC-NFR-01",
+   "story": "US-021",
+   "group": "NFR",
+   "requirement": "Footer CSS + footer.js <= 20 KB gzipped; logo and badges with dimensions (CLS 0); region / legal in the initial HTML",
+   "source": "intact-footer.md AC-NFR-01"
+  },
+  {
+   "id": "US-021.AC-NFR-02",
+   "story": "US-021",
+   "group": "NFR",
+   "requirement": "URLs encoded, newWindow rel=noopener, unsafe schemes neutralized, legal RTE sanitized",
+   "source": "intact-footer.md AC-NFR-02"
+  },
+  {
+   "id": "US-023.DF-variant",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `variant`: select of the 8 variants (required)",
+   "source": "intact-hero-banner.md dialog_fields.variant"
+  },
+  {
+   "id": "US-023.DF-alignment",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `alignment`: Left / Center (default Center, Left for Left on image and Half)",
+   "source": "intact-hero-banner.md dialog_fields.alignment"
+  },
+  {
+   "id": "US-023.DF-titleSize",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `titleSize`: Display / H1 / H2 (styles only)",
+   "source": "intact-hero-banner.md dialog_fields.titleSize"
+  },
+  {
+   "id": "US-023.DF-pretitle",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `pretitle`: text above the title",
+   "source": "intact-hero-banner.md dialog_fields.pretitle"
+  },
+  {
+   "id": "US-023.DF-pretitleIsH1",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `pretitleIsH1`: pretitle = page H1, title = H2",
+   "source": "intact-hero-banner.md dialog_fields.pretitleIsH1"
+  },
+  {
+   "id": "US-023.DF-title",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `title`: richtext with segment emphasis",
+   "source": "intact-hero-banner.md dialog_fields.title"
+  },
+  {
+   "id": "US-023.DF-description",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `description`: richtext",
+   "source": "intact-hero-banner.md dialog_fields.description"
+  },
+  {
+   "id": "US-023.DF-phoneLabel",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `phoneLabel`: label before the number (one phone link)",
+   "source": "intact-hero-banner.md dialog_fields.phoneLabel"
+  },
+  {
+   "id": "US-023.DF-phoneNumber",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `phoneNumber`: number with a fixed phone icon (one tel: link)",
+   "source": "intact-hero-banner.md dialog_fields.phoneNumber"
+  },
+  {
+   "id": "US-023.DF-textLinkLabel",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `textLinkLabel`: text-link CTA label",
+   "source": "intact-hero-banner.md dialog_fields.textLinkLabel"
+  },
+  {
+   "id": "US-023.DF-textLinkUrl",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `textLinkUrl`: text-link destination",
+   "source": "intact-hero-banner.md dialog_fields.textLinkUrl"
+  },
+  {
+   "id": "US-023.DF-scrollText",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `scrollText`: scroll text",
+   "source": "intact-hero-banner.md dialog_fields.scrollText"
+  },
+  {
+   "id": "US-023.DF-showButtonGroup",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `showButtonGroup`: embedded Button Group (max 3 buttons)",
+   "source": "intact-hero-banner.md dialog_fields.showButtonGroup"
+  },
+  {
+   "id": "US-023.DF-showTag",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `showTag`: embedded Tag",
+   "source": "intact-hero-banner.md dialog_fields.showTag"
+  },
+  {
+   "id": "US-023.DF-closingText",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `closingText`: closing rich text (P1-P5 sizes only)",
+   "source": "intact-hero-banner.md dialog_fields.closingText"
+  },
+  {
+   "id": "US-023.DF-desktopImage",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `desktopImage`: desktop image (fallback tablet, mobile)",
+   "source": "intact-hero-banner.md dialog_fields.desktopImage"
+  },
+  {
+   "id": "US-023.DF-tabletImage",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `tabletImage`: tablet image (fallback desktop, mobile)",
+   "source": "intact-hero-banner.md dialog_fields.tabletImage"
+  },
+  {
+   "id": "US-023.DF-mobileImage",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `mobileImage`: mobile image (fallback tablet, desktop)",
+   "source": "intact-hero-banner.md dialog_fields.mobileImage"
+  },
+  {
+   "id": "US-023.DF-video",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `video`: decorative DAM MP4 over the image (desktop / tablet)",
+   "source": "intact-hero-banner.md dialog_fields.video"
+  },
+  {
+   "id": "US-023.DF-mobileVideo",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `mobileVideo`: dedicated mobile MP4 <= 1 MB",
+   "source": "intact-hero-banner.md dialog_fields.mobileVideo"
+  },
+  {
+   "id": "US-023.DF-useDesktopVideoOnMobile",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `useDesktopVideoOnMobile`: checkbox, default unchecked",
+   "source": "intact-hero-banner.md dialog_fields.useDesktopVideoOnMobile"
+  },
+  {
+   "id": "US-023.DF-imageIsDecorative",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `imageIsDecorative`: shared decorative flag",
+   "source": "intact-hero-banner.md dialog_fields.imageIsDecorative"
+  },
+  {
+   "id": "US-023.DF-imageAltText",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `imageAltText`: shared alt text (required when informative)",
+   "source": "intact-hero-banner.md dialog_fields.imageAltText"
+  },
+  {
+   "id": "US-023.DF-imageRatio",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `imageRatio`: 2:1, 1:1, 1:2, 4:5, 3:2 (Center on solid, Center full width image)",
+   "source": "intact-hero-banner.md dialog_fields.imageRatio"
+  },
+  {
+   "id": "US-023.DF-backgroundColor",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog field `backgroundColor`: approved container colour tokens with contrast switch",
+   "source": "intact-hero-banner.md dialog_fields.backgroundColor"
+  },
+  {
+   "id": "US-023.AC-04",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog always shows every field; non-applicable fields have no effect; ratio only for 2 variants; show checkboxes expose Button Group (max 3) and Tag",
+   "source": "intact-hero-banner.md AC-04"
+  },
+  {
+   "id": "US-023.AC-05",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Alignment defaults Center except Left on image and Half (Left); authored value controls alignment",
+   "source": "intact-hero-banner.md AC-05"
+  },
+  {
+   "id": "US-023.ST-error-validation",
+   "story": "US-023",
+   "group": "AUTH",
+   "requirement": "Dialog rejects a video without fallback image and an informative image without alt",
+   "source": "intact-hero-banner.md States / Error"
+  },
+  {
+   "id": "US-023.VAR-center-on-image",
+   "story": "US-023",
+   "group": "VAR",
+   "requirement": "Variant `center-on-image`",
+   "source": "intact-hero-banner.md variants.center-on-image"
+  },
+  {
+   "id": "US-023.VAR-center-on-solid",
+   "story": "US-023",
+   "group": "VAR",
+   "requirement": "Variant `center-on-solid`",
+   "source": "intact-hero-banner.md variants.center-on-solid"
+  },
+  {
+   "id": "US-023.VAR-left-on-image",
+   "story": "US-023",
+   "group": "VAR",
+   "requirement": "Variant `left-on-image` (V2 page)",
+   "source": "intact-hero-banner.md variants.left-on-image"
+  },
+  {
+   "id": "US-023.VAR-in-container",
+   "story": "US-023",
+   "group": "VAR",
+   "requirement": "Variant `in-container` visually distinct: inset box, margin + rounded corners on a light background",
+   "source": "intact-hero-banner.md variants.in-container"
+  },
+  {
+   "id": "US-023.VAR-half",
+   "story": "US-023",
+   "group": "VAR",
+   "requirement": "Variant `half`",
+   "source": "intact-hero-banner.md variants.half"
+  },
+  {
+   "id": "US-023.VAR-simple",
+   "story": "US-023",
+   "group": "VAR",
+   "requirement": "Variant `simple`",
+   "source": "intact-hero-banner.md variants.simple"
+  },
+  {
+   "id": "US-023.VAR-center-full-width-image",
+   "story": "US-023",
+   "group": "VAR",
+   "requirement": "Variant `center-full-width-image`",
+   "source": "intact-hero-banner.md variants.center-full-width-image"
+  },
+  {
+   "id": "US-023.VAR-simple-with-image",
+   "story": "US-023",
+   "group": "VAR",
+   "requirement": "Variant `simple-with-image` (renamed from Simple with illustration)",
+   "source": "intact-hero-banner.md variants.simple-with-image"
+  },
+  {
+   "id": "US-023.AC-02",
+   "story": "US-023",
+   "group": "LAYOUT",
+   "requirement": "Responsive presentation at mobile (<=743), tablet, desktop-md, desktop-lg, hd (>=1920) without horizontal scroll",
+   "source": "intact-hero-banner.md AC-02 + breakpoints"
+  },
+  {
+   "id": "US-023.AN-examples",
+   "story": "US-023",
+   "group": "LAYOUT",
+   "requirement": "Per-breakpoint presentation of the Figma examples (Left on image: 320 / 744 = 700, 1024 = 630, 1440 = 700, 1920 = 933 high)",
+   "source": "intact-hero-banner.md figma_nodes intact / hero / examples"
+  },
+  {
+   "id": "US-023.AC-12b",
+   "story": "US-023",
+   "group": "LAYOUT",
+   "requirement": "Image-background variants expand vertically with their content (all overlaid content visible at every breakpoint)",
+   "source": "intact-hero-banner.md AC-12"
+  },
+  {
+   "id": "US-023.AN-solid",
+   "story": "US-023",
+   "group": "LAYOUT",
+   "requirement": "Center on solid content container: min desktop height, responsive width %, bottom-aligned, may overlap the next component",
+   "source": "intact-hero-banner.md Behavior"
+  },
+  {
+   "id": "US-023.AC-06",
+   "story": "US-023",
+   "group": "TOKENS",
+   "requirement": "titleSize Display / H1 / H2 restyles the title without changing the tag",
+   "source": "intact-hero-banner.md AC-06"
+  },
+  {
+   "id": "US-023.AC-11",
+   "story": "US-023",
+   "group": "TOKENS",
+   "requirement": "Emphasis style on selected title segments (not whole lines)",
+   "source": "intact-hero-banner.md AC-11"
+  },
+  {
+   "id": "US-023.AC-16",
+   "story": "US-023",
+   "group": "TOKENS",
+   "requirement": "Background colour from container tokens; text / icons switch contrast",
+   "source": "intact-hero-banner.md AC-16"
+  },
+  {
+   "id": "US-023.AC-18",
+   "story": "US-023",
+   "group": "TOKENS",
+   "requirement": "Closing rich text at the end of the hero, P1-P5 typography only (no freeform components)",
+   "source": "intact-hero-banner.md AC-18"
+  },
+  {
+   "id": "US-023.AC-07",
+   "story": "US-023",
+   "group": "STATES",
+   "requirement": "Video: fallback image first, video over it at desktop / tablet; mobile: image unless mobileVideo (or desktop video when useDesktopVideoOnMobile)",
+   "source": "intact-hero-banner.md AC-07"
+  },
+  {
+   "id": "US-023.AC-15",
+   "story": "US-023",
+   "group": "STATES",
+   "requirement": "Autoplaying video has a keyboard-operable pause / play control with a name; reduced-motion / Save-Data: no autoplay / load; no VideoObject",
+   "source": "intact-hero-banner.md AC-15"
+  },
+  {
+   "id": "US-023.AC-12a",
+   "story": "US-023",
+   "group": "STATES",
+   "requirement": "Authored animation treatment on Center on image / Center full width image (respects reduced motion)",
+   "source": "intact-hero-banner.md AC-12"
+  },
+  {
+   "id": "US-023.ST-empty",
+   "story": "US-023",
+   "group": "STATES",
+   "requirement": "Empty: author placeholder; publish suppresses the hero; empty fields omitted",
+   "source": "intact-hero-banner.md States / Empty"
+  },
+  {
+   "id": "US-023.ST-error",
+   "story": "US-023",
+   "group": "STATES",
+   "requirement": "Image variant without any media: logged, no broken image / video",
+   "source": "intact-hero-banner.md States / Error"
+  },
+  {
+   "id": "US-023.AC-01",
+   "story": "US-023",
+   "group": "BEHAV",
+   "requirement": "Each authored pretitle, title, description, phone, text link, scroll text renders in the variant; empty fields omitted without wrapper or spacing",
+   "source": "intact-hero-banner.md AC-01"
+  },
+  {
+   "id": "US-023.AC-08",
+   "story": "US-023",
+   "group": "BEHAV",
+   "requirement": "Breakpoint image fallback chain (desktop > tablet > mobile; tablet > desktop > mobile; mobile > tablet > desktop)",
+   "source": "intact-hero-banner.md AC-08"
+  },
+  {
+   "id": "US-023.AC-09",
+   "story": "US-023",
+   "group": "BEHAV",
+   "requirement": "pretitleIsH1: pretitle is the single h1, title an h2",
+   "source": "intact-hero-banner.md AC-09"
+  },
+  {
+   "id": "US-023.AC-10",
+   "story": "US-023",
+   "group": "BEHAV",
+   "requirement": "Text-link CTA in addition to the phone CTA and the button group",
+   "source": "intact-hero-banner.md AC-10"
+  },
+  {
+   "id": "US-023.AN-phone",
+   "story": "US-023",
+   "group": "BEHAV",
+   "requirement": "Phone CTA: label + fixed icon + number in ONE tel: link",
+   "source": "intact-hero-banner.md dialog_fields.phoneNumber / Anatomy"
+  },
+  {
+   "id": "US-023.AC-03",
+   "story": "US-023",
+   "group": "A11Y",
+   "requirement": "Title heading level per page contract; informative image alt non-empty, decorative alt empty; embedded controls keep semantics",
+   "source": "intact-hero-banner.md AC-03"
+  },
+  {
+   "id": "US-023.AC-17",
+   "story": "US-023",
+   "group": "A11Y",
+   "requirement": "Readability gradient rendered over the background image behind text",
+   "source": "intact-hero-banner.md AC-17"
+  },
+  {
+   "id": "US-023.NFR-a11y",
+   "story": "US-023",
+   "group": "A11Y",
+   "requirement": "WCAG 2.1 AA, 320 px reflow; axe 0 violations on the hero",
+   "source": "intact-hero-banner.md NFR Accessibility"
+  },
+  {
+   "id": "US-023.NFR-seo",
+   "story": "US-023",
+   "group": "SEO",
+   "requirement": "Title crawlable server-rendered text; omitted title > no empty heading; no video structured data",
+   "source": "intact-hero-banner.md NFR SEO"
+  },
+  {
+   "id": "US-023.NFR-analytics",
+   "story": "US-023",
+   "group": "SEO",
+   "requirement": "No hero-specific analytics event",
+   "source": "intact-hero-banner.md NFR Analytics"
+  },
+  {
+   "id": "US-023.AC-NFR-01",
+   "story": "US-023",
+   "group": "NFR",
+   "requirement": "desktop / tablet / mobile images as <picture><source media> (Image component convention), fetchpriority=high, <= 25 KB CSS/JS",
+   "source": "intact-hero-banner.md AC-NFR-01"
+  },
+  {
+   "id": "US-023.AC-14",
+   "story": "US-023",
+   "group": "NFR",
+   "requirement": "Fallback image < 150 KB WebP, LCP, not lazy, fetchpriority high; video preload none/metadata after the image; no layout shift",
+   "source": "intact-hero-banner.md AC-14"
+  },
+  {
+   "id": "US-023.AC-13",
+   "story": "US-023",
+   "group": "NFR",
+   "requirement": "Video asset limits (MP4 H.264 1.5-3 MB, max 5 MB, 720p, 6-15 s loop, no audio; mobile <= 1 MB)",
+   "source": "intact-hero-banner.md AC-13"
+  },
+  {
+   "id": "US-023.NFR-i18n-sec",
+   "story": "US-023",
+   "group": "NFR",
+   "requirement": "All text author-supplied per locale; HTL / RTE sanitization; DAM / internal paths only",
+   "source": "intact-hero-banner.md NFR i18n / Security"
+  }
+ ]
+}
