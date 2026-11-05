@@ -41,33 +41,92 @@ text); button widths that hug their label differ by 2–11 px because of the fal
 Images are the Figma image fills cropped to the exact visible window of each Figma node (imageTransform or child
 rectangle), so `object-fit: cover` reproduces the Figma framing while staying authorable in the DAM.
 
+## Fallback fonts (calibrated on the Figma text runs)
+
+Without the licensed Intact Sans / Serif files, `styles/styles.css` declares one fallback face per weight
+(a weightless face makes Chrome synthesise bold from Arial Regular). `size-adjust` = median of
+(Figma hug width − letter-spacing × characters) / local width over the single-line hug-width text nodes of the page
+frame; ascent / descent overrides keep the local face's ascent + descent and place the baseline like the Intact faces
+(ascent − descent = 0.774 em Sans, 0.806 em Serif; Chrome multiplies the overrides by `size-adjust`).
+
+| Face | Local font | size-adjust | ascent-override | descent-override | line-gap |
+|---|---|---|---|---|---|
+| Intact Sans 400 | Arial | 100.8 % | 94.25 % | 17.45 % | 0 |
+| Intact Sans 500 | Arial Bold | 94.4 % | 96.85 % | 14.85 % | 0 |
+| Intact Sans 600 | Arial Bold | 93.8 % | 97.1 % | 14.6 % | 0 |
+| Intact Sans 700 | Arial Bold | 95.7 % | 96.3 % | 15.4 % | 0 |
+| Intact Serif 400–500 | Georgia | 104.9 % | 95.2 % | 18.4 % | 0 |
+
+Effect on the AEM render at 1440 (boxes ±3 px / pixels differing):
+
+| Section | Before | After |
+|---|---|---|
+| S01 header (i-nav) | 9/18, 4.5 % | 18/18, 3.2 % |
+| S10 footer (i-footer) | 19/30, 4.0 % | 25/30, 3.2 % |
+| S02 hero | 2.27 % | 1.86 % |
+| S03 product list | 2.35 % | 1.49 % |
+| S04 cards | 2.24 % | 1.79 % |
+| S05 side by side | 1.53 % | 1.14 % |
+| S06 FAQ | 2.43 % | 2.27 % |
+| S07 side by side | 1.19 % | 0.73 % |
+| S08 partnerships | 4.81 % | 4.79 % |
+| S09 quote banner | 1.15 % | 0.57 % |
+| Page boxes S02–S09 | 53/54 | 53/54 |
+
+Remaining misses, Figma-intrinsic: footer `col1` height (frame fixed at 172 while its links end at 286), SOCIAL
+MEDIA / DOWNLOAD THE APP label boxes (stale instance boxes 72 / 105, their render bounds 82 / 118 match ours),
+S03 +5 (885 px of content in an 880 px frame). Font residuals: legal « Sitemap » x +3.8 (sum of Figma's
+integer-rounded hug widths along the row) and the last related link width +3.1.
+
 ## Other viewports (no Figma frame — tokens of the Global-Responsive modes)
 
-| Width | Horizontal overflow | Tokens (h1, h2, page padding, xl spacing) |
-|---|---|---|
-| 320 / 375 | none | 36/40, 32/36, 16, 48 — pass |
-| 744 | none | 36/40, 32/36, 40, 48 — pass |
-| 900 (in-between) | none | stacked layouts, no clipping |
-| 1024 | none | 64/68, 56/56, 64, 56 — pass |
-| 1200 (in-between) | none | two-column layouts, no clipping |
-| 1440 | none | 64/68, 56/56, 96, 64 — pass |
-| 1920 | none | content centred at 1248 / 1240 px |
+`import-work/verify/responsive-modes.mjs` on the AEM render: the 19 variables redefined by the `tokens.css` modes
+resolve to the mode of each width, no horizontal overflow, no text outside a clipping box, no overlapping text runs.
 
-Mobile / tablet layouts (stacking order, product list without hover, hero crop) are assumptions pending the
-designer's frames (see `figma-vs-prod.md`, question 1).
+| Width | Tokens | Overflow / clip / overlap | Layout |
+|---|---|---|---|
+| 320, 375, 600, 743 | mobile mode (padding 16) | none | burger + CTA, 1 card column, product rows 2 columns, footer 1 column |
+| 744, 1023 | 744 mode (padding 40) | none | 2 card columns, footer 2 columns |
+| 1024, 1199, 1200, 1439 | 1024 mode (padding 64) | none | nav links + burger, 3 card columns, product rows 3 columns with hover reveal, footer 3 columns |
+| 1440 | 1440 mode (padding 96) | none | full nav (links, search, CTA), footer 4 columns |
+| 1920 | 1920 mode (padding 252, Figma 1920 nav frames) | none | as 1440 |
 
-## States (Figma variants)
+Components switch at the Figma breakpoints only (744 / 1024 / 1440 / 1920); the boilerplate `columns` block
+(900 px) is not used on the page. **PROVISIONAL:** below 744 px the product pictogram scales from 32 to 64 px high
+(181:64 ratio) so « Commercial vehicle » keeps its column at 320 px; mobile / tablet layouts remain assumptions
+pending the designer's frames (see `figma-vs-prod.md`, question 1).
 
-| Figma variant | Rendered | Result |
-|---|---|---|
-| `i-button` Primary 56 Default `#df0030`, radius 8 | `rgb(223, 0, 48)`, 56 px, 8 px | pass |
-| `i-button` Primary Hover `#9e0a26` | `rgb(158, 10, 38)` | pass |
-| `i-button` Secondary 40 Default, border `#1a1a1a` 2 px | border `rgb(26, 26, 26)`, 40 px | pass |
-| `i-button` Secondary Hover `#94712a1a` | `rgba(148, 113, 42, 0.1)` | pass |
-| `i-button` Secondary-reversed Default / Hover `#ffffff33` | transparent + white border / `rgba(255, 255, 255, 0.2)` | pass |
-| `i-button` Focus (radius 6) | 2 px outline, radius 6 | pass |
-| `product list v2` state=hover (pictogram + description) | row 1 shown as in the Figma; any hovered / focused row switches | pass |
-| FAQ open state | not designed — `+` becomes `−`, answer from production | assumption |
+## States
+
+`import-work/verify/states-figma.mjs` on the AEM render: 88/88 checks (computed styles after real hover, keyboard
+focus — `:focus-visible` — and clicks), montages `montage-buttons.png` / `montage-header-footer.png` next to the
+cached Figma variant renders (`import-work/figma/renders/states/`). Expected values come from the variant nodes
+(`import-work/figma/states-expected.json`). Sources: **Figma** = variant in the library; **prod** = intact.ca
+behaviour (headful Chrome); **PROVISIONAL** = no design, built from the library tokens.
+
+| Element | States | Source | Verified |
+|---|---|---|---|
+| `i-button` Primary / Secondary / Tertiary / Secondary-reversed / Tertiary-reversed × 40 / 56 | Default, Hover, Focus (2 px ring, 2 px gap, radius 6, colour of the type), Disabled | Figma | 40/40 fixtures + 18 page buttons |
+| Button transitions | colour 0.25 s ease, none under reduced motion | prod (Figma: instant) | pass |
+| Hero, FAQ, partnerships, side-by-side CTAs | as their `i-button` type | Figma | pass |
+| Product list rows | row 1 = Figma hover sample; hover / focus reveals pictogram + description of that row only, title `#141414`; Smart animate Gentle 0.51 s | Figma | pass (6 rows + keyboard) |
+| Cards CTA (Tertiary-reversed on the image) | Hover `#ede6df`, white focus ring | Figma | pass |
+| Cards | image zoom 1.04 over 0.51 s on hover / focus-within | PROVISIONAL (prod tiles animate 0.5 s) | pass |
+| FAQ accordion | items open independently (native `details`), `+` → `−` with 180° turn 0.25 s, height transition (`::details-content`), focus ring, Enter / Space | PROVISIONAL (closed state only in Figma; single vs multiple not determinable on prod) | pass |
+| Marquee | continuous motion, pause on hover / focus, static under reduced motion | Figma (motion) + PROVISIONAL (pause) | pass |
+| Line selector (Personal / Business / Prestige) | Default, Active and Hover 20 % white, Focus 1 px white ring inset 2 | Figma | pass |
+| Nav links | Hover 10 % gold pill, label + 8 px per side, radius 8 | Figma (`i-text-button` Hover) | pass |
+| Nav CTA | i-button Primary Hover / Focus (red ring) | Figma | pass |
+| Header Default / Scrolled | top bar out, 64 px bar, white 80 % + background blur 48 (CSS 24 px); back to Default at the top | Figma (`i-nav`) | pass |
+| Search | opens with `aria-expanded`, focus in the field, Escape closes and returns focus | PROVISIONAL | pass |
+| Mobile burger drawer (375) | `aria-expanded`, focus inside, scroll lock, Escape + focus back to the burger | PROVISIONAL | pass |
+| Footer links | `b-text-button` Reversed: Hover `#cce5f7` (no underline), Focus white 2 px ring, 2 px gap, radius 4; 0.25 s | Figma + prod timing | pass |
+| Footer legal links, related links | underline removed on hover | PROVISIONAL | — |
+| Legal notes toggle | `aria-expanded`, panel shown, chevron turns 180° | prod (content) + PROVISIONAL (chevron) | pass |
+| Province / language | FR link, QC control, hover 20 % white | Figma (line selector) + PROVISIONAL (action) | pass |
+
+Production (intact.ca, headful Chrome): buttons and nav 0.25 s, tiles box-shadow 0.5 s, text links colour 0.5 s,
+accordion and footer without transitions; the production header is not sticky (the Figma Scrolled state is kept).
 
 ## Accessibility (axe-core, WCAG 2.1 A/AA, `main`)
 
@@ -99,13 +158,13 @@ Same harnesses, run on the local author render (UE instrumentation and `editor-s
 | Check | Result |
 |---|---|
 | Element boxes 1440 | 53/54 (S03 +5, Figma content) |
-| Visual diff 1440 | S02–S09 1.2–2.4 %, S08 4.8 % |
+| Visual diff 1440 | S02–S09 0.6–2.3 %, S08 4.8 % |
 | Overflow 375 / 768 / 1024 / 1440 | none |
 | Button / product row / accordion states | pass |
 | axe `main` | 0 violations |
-| Header 1440 (i-nav) | 9/18 boxes, all failures are text widths (fallback font); 4.5 % diff |
-| Footer 1440 (i-footer) | 19/30 boxes, text widths + `col1` height (Figma frame fixed at 172 while its links end at 286) ; 4.0 % diff |
-| Header / footer states | 25/25 (line selector, hover, focus order, search, Scrolled, drawer, legal notes, axe) |
+| Header 1440 (i-nav) | 18/18 boxes, 3.2 % diff (calibrated fallback fonts) |
+| Footer 1440 (i-footer) | 25/30 boxes, 3.2 % diff — 3 Figma-intrinsic, 2 font residuals (see Fallback fonts) |
+| States | 88/88 (see States) |
 
 Two AEM-only defects were found and fixed: the boilerplate `editor-support-rte.js` wrapped richtext in an extra
 `div` (hero button group and centred copy lost their `> p` selectors), and AEM drops an empty `imageAlt` (hero and
