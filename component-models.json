@@ -227,6 +227,30 @@
     ]
   },
   {
+    "id": "cf-rates",
+    "fields": [
+      {
+        "component": "aem-content-fragment",
+        "valueType": "string",
+        "name": "reference",
+        "label": "Content Fragment (model Mortgage Rates)",
+        "variationName": "variation",
+        "required": true,
+        "validation": {
+          "rootPath": "/content/dam/intact"
+        }
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "variation",
+        "label": "Variation",
+        "description": "Content Fragment variation, empty = master",
+        "value": "master"
+      }
+    ]
+  },
+  {
     "id": "columns",
     "fields": [
       {
@@ -479,6 +503,34 @@
         "value": "",
         "label": "Text (heading, body, CTA: italic = Secondary)",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "stock-quote",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "ticker",
+        "label": "Ticker symbol",
+        "description": "US-listed symbol, e.g. TSLA",
+        "value": "TSLA",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "description": "Empty = company name and symbol from the quote"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "note",
+        "label": "Currency note",
+        "value": "Price in US dollars (USD), fetched live on every page load. Demo only, not investment advice."
       }
     ]
   }
