@@ -15,7 +15,8 @@ export default function decorate(block) {
     summary.className = 'accordion-item-label';
     const label = document.createElement('span');
     label.textContent = labelCell?.textContent.trim() || '';
-    if (labelCell) moveInstrumentation(labelCell, label);
+    const labelSource = labelCell?.querySelector('[data-aue-prop]') || labelCell;
+    if (labelSource) moveInstrumentation(labelSource, label);
     summary.append(label);
 
     const body = bodyCell || document.createElement('div');

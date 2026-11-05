@@ -39,7 +39,8 @@ export default function decorate(block) {
     const title = document.createElement('h3');
     title.className = 'product-list-title';
     title.textContent = titleCell?.textContent.trim() || '';
-    if (titleCell) moveInstrumentation(titleCell, title);
+    const titleSource = titleCell?.querySelector('[data-aue-prop]') || titleCell;
+    if (titleSource) moveInstrumentation(titleSource, title);
 
     const desc = document.createElement('span');
     desc.className = 'product-list-description';

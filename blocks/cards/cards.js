@@ -20,7 +20,7 @@ export default function decorate(block) {
       const tag = document.createElement('span');
       tag.className = 'cards-card-tag';
       tag.textContent = tagCell.textContent.trim();
-      moveInstrumentation(tagCell, tag);
+      moveInstrumentation(tagCell.querySelector('[data-aue-prop]') || tagCell, tag);
       li.append(tag);
     }
     if (bodyCell) {
