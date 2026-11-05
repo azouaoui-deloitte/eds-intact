@@ -6,6 +6,8 @@
 export default function decorate(block) {
   const [mediaRow, textRow] = [...block.children];
   mediaRow?.classList.add('side-by-side-media');
+  // AEM drops an empty imageAlt: an image without alternative text is decorative
+  mediaRow?.querySelectorAll('img:not([alt])').forEach((img) => img.setAttribute('alt', ''));
   textRow?.classList.add('side-by-side-lockup');
   const inner = document.createElement('div');
   inner.className = 'side-by-side-inner';

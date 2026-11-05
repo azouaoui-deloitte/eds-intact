@@ -14,6 +14,8 @@ export default function decorate(block) {
 
   mediaRow?.classList.add('hero-media');
   if (!mediaRow?.querySelector('picture')) block.classList.add('no-image');
+  // AEM drops an empty imageAlt: an image without alternative text is decorative
+  mediaRow?.querySelectorAll('img:not([alt])').forEach((img) => img.setAttribute('alt', ''));
   const content = textRow?.firstElementChild;
   if (!content) return;
   textRow.classList.add('hero-lockup');
