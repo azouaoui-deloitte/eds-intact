@@ -1,0 +1,319 @@
+/*
+ * Hero V2 (US-023, option us-v2): per-breakpoint presentation of the story Figma examples
+ * (intact / hero / examples 40004808:13717) on top of hero.css. Loaded by hero-us-v2.js only.
+ */
+
+.hero.us-v2 {
+  --hero-v2-gap: var(--size-16);
+  --hero-v2-lockup-max: none;
+  --hero-v2-min-height: 700px;
+}
+
+.hero.us-v2 .hero-lockup > div {
+  gap: var(--hero-v2-gap);
+  max-width: var(--hero-v2-lockup-max);
+}
+
+/* AC-12: image-background variants keep their design height and grow with their content */
+.hero.us-v2.left-on-image,
+.hero.us-v2.center-on-image,
+.hero.us-v2.in-container,
+.hero.us-v2.half {
+  min-height: var(--hero-v2-min-height);
+}
+
+/* AC-05: authored alignment (default Left for Left on image and Half) */
+.hero.us-v2.align-left {
+  text-align: start;
+}
+
+.hero.us-v2.align-left .hero-lockup > div {
+  align-items: flex-start;
+  margin-inline: 0;
+}
+
+.hero.us-v2.align-left .hero-tag {
+  align-self: flex-start;
+}
+
+.hero.us-v2.align-left .hero-buttons {
+  justify-content: flex-start;
+}
+
+.hero.us-v2.align-center {
+  text-align: center;
+}
+
+.hero.us-v2.align-center .hero-lockup > div {
+  align-items: center;
+  margin-inline: auto;
+}
+
+.hero.us-v2.align-center .hero-tag {
+  align-self: center;
+}
+
+.hero.us-v2.align-center .hero-buttons {
+  justify-content: center;
+}
+
+/* AC-06: title size = styling only (Display per the examples: 40 / 56 / 64 / 72) */
+.hero.us-v2 .hero-title {
+  margin: 0;
+}
+
+.hero.us-v2.title-display .hero-title {
+  font-size: 40px;
+  line-height: 44px;
+}
+
+.hero.us-v2.title-h1 .hero-title {
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-line-height);
+}
+
+.hero.us-v2.title-h2 .hero-title {
+  font-size: 32px;
+  line-height: 36px;
+}
+
+/* AC-11: emphasis on title segments */
+.hero.us-v2 .hero-title .hero-emphasis {
+  color: var(--color-brand-red);
+  font-style: normal;
+}
+
+.hero.us-v2.reversed .hero-title .hero-emphasis {
+  color: inherit;
+  font-style: italic;
+}
+
+.hero.us-v2 .hero-pretitle {
+  margin: 0;
+  font-size: var(--type-label-md-size);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--type-label-md-line-height);
+  letter-spacing: 0;
+}
+
+.hero.us-v2 .hero-description p {
+  margin: 0;
+  font-size: var(--type-label-lg-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--type-label-lg-line-height);
+}
+
+/* phone CTA: one tel: link with the fixed icon */
+.hero.us-v2 .hero-phone a:any-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-8);
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero.us-v2 .hero-phone-icon {
+  flex: none;
+  inline-size: 20px;
+  block-size: 20px;
+}
+
+.hero.us-v2 .hero-phone a:hover .hero-phone-number {
+  text-decoration: underline;
+}
+
+.hero.us-v2 .hero-text-link a:any-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.hero.us-v2 .hero-scroll {
+  font-weight: var(--font-weight-regular);
+}
+
+/* AC-18: closing rich text, P1-P5 sizes only */
+.hero.us-v2 .hero-closing p {
+  margin: 0;
+  font-size: var(--type-body-sm-size, 14px);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--type-body-sm-line-height, 20px);
+}
+
+/* AC-16: container colour tokens, contrast switch */
+.hero.us-v2.bg-sand { background-color: var(--color-sand); }
+.hero.us-v2.bg-white { background-color: var(--color-white); }
+.hero.us-v2.bg-dark { background-color: var(--color-surface-dark); }
+.hero.us-v2.bg-red { background-color: var(--color-brand-red); }
+.hero.us-v2.bg-burgundy { background-color: var(--color-burgundy, #7a1a33); }
+.hero.us-v2.bg-teal { background-color: var(--color-teal, #00594f); }
+
+.hero.us-v2.bg-sand:not(.reversed),
+.hero.us-v2.bg-white:not(.reversed) {
+  color: var(--color-surface-dark);
+}
+
+.hero.us-v2.reversed {
+  color: var(--color-white);
+}
+
+/* image ratio (Center on solid, Center full width image only) */
+.hero.us-v2:is(.center-on-solid, .center-full-width-image).ratio-2-1 .hero-media img { aspect-ratio: 2 / 1; }
+.hero.us-v2:is(.center-on-solid, .center-full-width-image).ratio-1-1 .hero-media img { aspect-ratio: 1; }
+.hero.us-v2:is(.center-on-solid, .center-full-width-image).ratio-1-2 .hero-media img { aspect-ratio: 1 / 2; }
+.hero.us-v2:is(.center-on-solid, .center-full-width-image).ratio-4-5 .hero-media img { aspect-ratio: 4 / 5; }
+.hero.us-v2:is(.center-on-solid, .center-full-width-image).ratio-3-2 .hero-media img { aspect-ratio: 3 / 2; }
+
+/* In container: visually distinct inset box (Figma 40004724:13785) */
+.hero.us-v2.in-container .hero-media {
+  border-radius: var(--radius-md);
+}
+
+/* AC-07 / AC-15: background video over the fallback image, pause / play control */
+.hero.us-v2 .hero-video {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.hero.us-v2 .hero-video-toggle {
+  position: absolute;
+  inset-block-end: var(--size-16);
+  inset-inline-end: var(--size-16);
+  z-index: 2;
+  inline-size: 40px;
+  block-size: 40px;
+  border: var(--border-xs) solid currentcolor;
+  border-radius: 50%;
+  background: rgb(0 0 0 / 40%);
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.hero.us-v2 .hero-video-toggle::before {
+  content: '';
+  display: block;
+  inline-size: 10px;
+  block-size: 12px;
+  margin: auto;
+  border-inline: 3px solid currentcolor;
+  box-sizing: border-box;
+}
+
+.hero.us-v2 .hero-video-toggle.is-paused::before {
+  border-inline-end: 0;
+  border-inline-start: 0;
+  inline-size: 0;
+  block-size: 0;
+  border-block: 6px solid transparent;
+  border-inline-start-width: 10px;
+  border-inline-start-style: solid;
+}
+
+.hero.us-v2 .hero-video-toggle:focus-visible {
+  outline: var(--border-sm) solid var(--color-white);
+  outline-offset: var(--border-sm);
+}
+
+/* AC-12: authored animation on the two full-width variants */
+@keyframes hero-v2-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+.hero.us-v2.animate:is(.center-on-image, .center-full-width-image) .hero-lockup > div {
+  animation: hero-v2-rise 0.6s ease-out both;
+}
+
+/* mobile (Figma 320 example): stacked full-width buttons, 12 px apart */
+@media (width < 744px) {
+  .hero.us-v2 .hero-buttons {
+    flex-direction: column;
+    align-self: stretch;
+    gap: 12px;
+  }
+
+  .hero.us-v2 .hero-button-group {
+    align-self: stretch;
+  }
+
+  .hero.us-v2 .hero-buttons a.button {
+    inline-size: 100%;
+  }
+}
+
+/* tablet (Figma 744 example): lockup at the bottom of a 700 px hero */
+@media (width >= 744px) {
+  .hero.us-v2.title-display .hero-title {
+    font-size: 56px;
+    line-height: 60px;
+  }
+
+  .hero.us-v2.title-h2 .hero-title {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .hero.us-v2.left-on-image {
+    justify-content: flex-end;
+  }
+
+  .hero.us-v2 {
+    --hero-v2-lockup-max: 639px;
+  }
+}
+
+/* desktop-md (Figma 1024 example): 630 px, lockup 512, gap 24, centred vertically */
+@media (width >= 1024px) {
+  .hero.us-v2 {
+    --hero-v2-gap: var(--size-24);
+    --hero-v2-lockup-max: 512px;
+    --hero-v2-min-height: 630px;
+  }
+
+  .hero.us-v2.left-on-image {
+    justify-content: center;
+  }
+
+  .hero.us-v2.title-display .hero-title {
+    font-size: 64px;
+    line-height: 68px;
+  }
+
+  .hero.us-v2.title-h2 .hero-title {
+    font-size: 48px;
+    line-height: 52px;
+  }
+}
+
+/* desktop-lg (Figma 1440 example): 700 px, lockup 718 */
+@media (width >= 1440px) {
+  .hero.us-v2 {
+    --hero-v2-lockup-max: 718px;
+    --hero-v2-min-height: 700px;
+  }
+
+  .hero.us-v2.title-display .hero-title {
+    font-size: 72px;
+    line-height: 76px;
+  }
+}
+
+/* hd (Figma 1920 example): 933 px, content 1416 wide, lockup 816 */
+@media (width >= 1920px) {
+  .hero.us-v2 {
+    --hero-v2-lockup-max: 816px;
+    --hero-v2-min-height: 933px;
+  }
+
+  .hero.us-v2 .hero-lockup {
+    max-width: 1416px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero.us-v2.animate .hero-lockup > div {
+    animation: none;
+  }
+}

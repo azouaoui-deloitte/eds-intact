@@ -7,7 +7,12 @@ const ON_IMAGE = ['left-on-image', 'center-on-image', 'in-container'];
  * Rows: image, tag, text (heading, body, fully bold group label, buttons, phone line).
  * @param {Element} block
  */
-export default function decorate(block) {
+export default async function decorate(block) {
+  if ([...block.classList].some((c) => c.endsWith('-us-v2'))) {
+    const { default: decorateV2 } = await import('./hero-us-v2.js');
+    await decorateV2(block);
+    return;
+  }
   const [mediaRow, tagRow, textRow] = [...block.children];
   if (!block.className.match(/\b(left|center|in-container|half|simple)/)) block.classList.add('left-on-image');
   if (ON_IMAGE.some((style) => block.classList.contains(style))) block.classList.add('reversed');

@@ -354,6 +354,313 @@
     ]
   },
   {
+    "id": "hero-v2",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Variant (US-023)",
+        "valueType": "string",
+        "value": "left-on-image-us-v2",
+        "options": [
+          {
+            "name": "Center on image",
+            "value": "center-on-image-us-v2"
+          },
+          {
+            "name": "Center on solid",
+            "value": "center-on-solid-us-v2"
+          },
+          {
+            "name": "Left on image",
+            "value": "left-on-image-us-v2"
+          },
+          {
+            "name": "In container",
+            "value": "in-container-us-v2"
+          },
+          {
+            "name": "Half",
+            "value": "half-us-v2"
+          },
+          {
+            "name": "Simple",
+            "value": "simple-us-v2"
+          },
+          {
+            "name": "Center full width image",
+            "value": "center-full-width-image-us-v2"
+          },
+          {
+            "name": "Simple with image",
+            "value": "simple-with-image-us-v2"
+          }
+        ],
+        "required": true
+      },
+      {
+        "component": "select",
+        "name": "classes_alignment",
+        "label": "Alignment (default: Left for Left on image and Half, Center otherwise)",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Variant default",
+            "value": ""
+          },
+          {
+            "name": "Left",
+            "value": "align-left"
+          },
+          {
+            "name": "Center",
+            "value": "align-center"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "classes_titleSize",
+        "label": "Title size (styling only, heading level unchanged)",
+        "valueType": "string",
+        "value": "title-display",
+        "options": [
+          {
+            "name": "Display",
+            "value": "title-display"
+          },
+          {
+            "name": "H1",
+            "value": "title-h1"
+          },
+          {
+            "name": "H2",
+            "value": "title-h2"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "classes_background",
+        "label": "Background colour (container tokens)",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "None",
+            "value": ""
+          },
+          {
+            "name": "Sand",
+            "value": "bg-sand"
+          },
+          {
+            "name": "White",
+            "value": "bg-white"
+          },
+          {
+            "name": "Dark",
+            "value": "bg-dark"
+          },
+          {
+            "name": "Red",
+            "value": "bg-red"
+          },
+          {
+            "name": "Burgundy",
+            "value": "bg-burgundy"
+          },
+          {
+            "name": "Teal",
+            "value": "bg-teal"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "classes_ratio",
+        "label": "Image ratio (Center on solid, Center full width image)",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Variant default",
+            "value": ""
+          },
+          {
+            "name": "2:1",
+            "value": "ratio-2-1"
+          },
+          {
+            "name": "1:1",
+            "value": "ratio-1-1"
+          },
+          {
+            "name": "1:2",
+            "value": "ratio-1-2"
+          },
+          {
+            "name": "4:5",
+            "value": "ratio-4-5"
+          },
+          {
+            "name": "3:2",
+            "value": "ratio-3-2"
+          }
+        ]
+      },
+      {
+        "component": "multiselect",
+        "name": "classes_options",
+        "label": "Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Show button group",
+            "value": "show-buttons"
+          },
+          {
+            "name": "Show tag",
+            "value": "show-tag"
+          },
+          {
+            "name": "Pretitle is the page H1 (title becomes H2)",
+            "value": "pretitle-h1"
+          },
+          {
+            "name": "Media is decorative (empty alt)",
+            "value": "decorative"
+          },
+          {
+            "name": "Use the desktop video on mobile",
+            "value": "desktop-video-on-mobile"
+          },
+          {
+            "name": "Animation (Center on image, Center full width image)",
+            "value": "animate"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "desktopImage",
+        "label": "Desktop image (1024 px and up; falls back to tablet, then mobile)",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "desktopImageAlt",
+        "label": "Alt text (shared by every image and video; required when informative)",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "tabletImage",
+        "label": "Tablet image (744-1023 px; falls back to desktop, then mobile)",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "mobileImage",
+        "label": "Mobile image (up to 743 px; falls back to tablet, then desktop)",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "video",
+        "label": "Background video (DAM MP4, decorative; plays over the image on desktop and tablet)"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "mobileVideo",
+        "label": "Mobile video (DAM MP4, 1 MB max)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tag",
+        "label": "Tag (shown with Show tag)",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "pretitle",
+        "label": "Pretitle",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title (italic = emphasis style)",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "buttons",
+        "label": "Button group (bold paragraph = group label; up to 3 buttons: bold link = Primary, italic link = Secondary)",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "phoneLabel",
+        "label": "Phone label (e.g. Or call now:)",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "phoneNumber",
+        "label": "Phone number (shown with a phone icon, one tel: link)",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "textLink",
+        "label": "Text link URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "textLinkText",
+        "label": "Text link label",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "scrollText",
+        "label": "Scroll text",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "closingText",
+        "label": "Closing text (contest / legal copy, P1-P5 sizes)",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "marquee-item",
     "fields": [
       {
