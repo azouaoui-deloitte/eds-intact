@@ -6,9 +6,9 @@ main > .section.hero-container > .hero-wrapper {
   max-width: none;
 }
 
-/* base = Figma Hero Style "Left on image" */
+/* base = Figma Hero Style "Left on image"; below 1024 px the lockup spans the image, so the veil is uniform */
 .hero {
-  --hero-gradient: linear-gradient(to right, rgb(0 0 0 / 50%) 0, rgb(0 0 0 / 50%) 50%, rgb(0 0 0 / 0%) 100%);
+  --hero-gradient: linear-gradient(rgb(0 0 0 / 50%), rgb(0 0 0 / 50%));
   --hero-lockup-max: var(--hero-lockup-width);
 
   position: relative;
@@ -287,6 +287,10 @@ main > .section.hero-container > .hero-wrapper {
 }
 
 @media (width >= 1024px) {
+  .hero.left-on-image {
+    --hero-gradient: linear-gradient(to right, rgb(0 0 0 / 50%) 0, rgb(0 0 0 / 50%) 50%, rgb(0 0 0 / 0%) 100%);
+  }
+
   .hero.left-on-image,
   .hero.center-on-image,
   .hero.in-container,
