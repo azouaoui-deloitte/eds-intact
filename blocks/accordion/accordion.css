@@ -12,7 +12,7 @@
   justify-content: space-between;
   gap: var(--size-24);
   padding: var(--size-24) 0;
-  color: var(--color-black);
+  color: var(--color-surface-dark);
   font-size: var(--type-question-size);
   font-weight: var(--font-weight-bold);
   line-height: var(--type-question-line-height);
