@@ -54,8 +54,11 @@
   --type-section-size: 32px; /* H2 section: 56/56 at 1440 (hard-coded), 32/36 at 320 (Contact us v2) */
   --type-section-line-height: 36px;
   --type-section-letter-spacing: -0.56px;
-  --type-product-size: 32px; /* product row title, hard-coded 56/56 in Figma; mobile assumed */
+  --type-product-size: 32px; /* i-products row title: .intact-products-mobile 32/36, desktop 48/52 */
   --type-product-line-height: 36px;
+  --type-product-letter-spacing: -1px;
+  --type-product-heading-size: 20px; /* i-products heading 20/24 bold */
+  --type-product-heading-line-height: 24px;
   --type-heading-l-size: 32px; /* side by side Thirds: 48/52 at 1440 (mobile assumed) */
   --type-heading-l-line-height: 36px;
   --type-label-lg-size: 18px; /* functional/button-label-lg */
@@ -71,8 +74,8 @@
   --type-question-line-height: 18px;
   --type-nav-size: 14px; /* main nav links */
   --type-nav-line-height: 20px;
-  --type-small-size: 14px; /* product description 14/18.2 */
-  --type-small-line-height: 18.2px;
+  --type-small-size: 14px; /* product description 14/20 (i-products hover / mobile) */
+  --type-small-line-height: 20px;
   --type-caption-size: 12px; /* paragraph/p5 */
   --type-caption-line-height: 18px;
   --type-tag-size: 11px; /* tag 11/11, letter-spacing 0.66 */
@@ -126,10 +129,15 @@
   --marquee-gap: 25px;
   --marquee-radius: 6.66px;
   --banner-min-height: 704px; /* S09 */
-  --product-row-height: 112px; /* product list v2 */
-  --product-pictogram-width: 181px;
-  --product-pictogram-height: 64px;
+  --product-section-padding: 56px; /* i-products Property 1=mobile 56 / desktop 80 / 1920 instance 96 */
+  --product-list-gap: 32px; /* heading to rows: mobile 32 / desktop 48 */
+  --product-content-width: 100%; /* desktop 1036 at 1440, 1172 at 1920 */
+  --product-row-height: 112px; /* .intact-products-desktop */
+  --product-pictogram-size: 40px; /* .intact-products-mobile left img */
+  --product-illustration-width: 181px; /* desktop illustration column */
+  --product-illustration-height: 64px;
   --product-description-width: 181px;
+  --product-chevron-size: 12px;
   --divider-color: #14141426; /* product list dividers */
   --divider-color-faq: #1414141a; /* FAQ dividers */
   --hero-min-height: 700px; /* i-hero */
@@ -181,8 +189,11 @@
     --type-display-line-height: 68px;
     --type-section-size: 56px;
     --type-section-line-height: 56px;
-    --type-product-size: 56px;
-    --type-product-line-height: 56px;
+    --type-product-size: 48px;
+    --type-product-line-height: 52px;
+    --product-section-padding: 80px;
+    --product-list-gap: 48px;
+    --product-content-width: 1036px;
     --device-width: 1024px;
   }
 }
@@ -201,6 +212,8 @@
 @media (width >= 1920px) {
   :root {
     --page-padding-x: 252px;
+    --product-section-padding: 96px;
+    --product-content-width: 1172px;
     --device-width: 1920px;
   }
 }

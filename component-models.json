@@ -355,7 +355,7 @@
         "component": "reference",
         "valueType": "string",
         "name": "image",
-        "label": "Pictogram",
+        "label": "Pictogram (mobile / tablet)",
         "multi": false
       },
       {
@@ -366,10 +366,17 @@
         "value": ""
       },
       {
+        "component": "reference",
+        "valueType": "string",
+        "name": "reveal_image",
+        "label": "Hover illustration (desktop: shown on hover / focus)",
+        "multi": false
+      },
+      {
         "component": "text",
         "valueType": "string",
-        "name": "description",
-        "label": "Description (shown on hover / focus)",
+        "name": "reveal_description",
+        "label": "Description (desktop: shown on hover / focus)",
         "value": ""
       },
       {
