@@ -1096,6 +1096,7 @@ body.nav-drawer-open {
 
 .nav-wrapper .i-nav.us-v2 .nav-province-list a {
   display: block;
+  text-decoration: none;
   border-block-end: var(--border-xs) solid var(--color-border-neutral-light);
   padding: var(--size-12) 0;
   font-size: var(--type-label-md-size);

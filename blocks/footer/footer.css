@@ -467,6 +467,7 @@
 
 .footer-inner.us-v2 .footer-listbox a:any-link {
   display: block;
+  text-decoration: none;
   border-block-end: var(--border-xs) solid var(--color-border-neutral-light);
   padding: var(--size-12) 0;
   color: var(--color-surface-dark);
