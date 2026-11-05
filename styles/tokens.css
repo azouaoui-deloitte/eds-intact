@@ -54,9 +54,9 @@
   --type-section-size: 32px; /* H2 section: 56/56 at 1440 (hard-coded), 32/36 at 320 (Contact us v2) */
   --type-section-line-height: 36px;
   --type-section-letter-spacing: -0.56px;
-  --type-product-size: 32px; /* i-products row title: .intact-products-mobile 32/36, desktop 48/52 */
-  --type-product-line-height: 36px;
-  --type-product-letter-spacing: -1px;
+  --type-product-size: 24px; /* i-products row title: mobile 24/28 (instance override of the 32/36 set), desktop 48/52 */
+  --type-product-line-height: 28px;
+  --type-product-letter-spacing: 0;
   --type-product-heading-size: 20px; /* i-products heading 20/24 bold */
   --type-product-heading-line-height: 24px;
   --type-heading-l-size: 32px; /* side by side Thirds: 48/52 at 1440 (mobile assumed) */
@@ -137,6 +137,7 @@
   --product-illustration-width: 181px; /* desktop illustration column */
   --product-illustration-height: 64px;
   --product-description-width: 181px;
+  --product-description-height: 54px; /* desktop description frame, text top-aligned */
   --product-chevron-size: 12px;
   --divider-color: #14141426; /* product list dividers */
   --divider-color-faq: #1414141a; /* FAQ dividers */
@@ -191,6 +192,7 @@
     --type-section-line-height: 56px;
     --type-product-size: 48px;
     --type-product-line-height: 52px;
+    --type-product-letter-spacing: -1px;
     --product-section-padding: 80px;
     --product-list-gap: 48px;
     --product-content-width: 1036px;

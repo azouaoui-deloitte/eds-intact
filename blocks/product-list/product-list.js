@@ -31,6 +31,8 @@ export default function decorate(block) {
     item.className = 'product-list-item';
     if (href) item.href = href;
 
+    const descSource = [...(revealCell?.children || [])]
+      .find((el) => !el.querySelector('picture') && el.tagName !== 'PICTURE');
     const picto = imageSlot(pictoCell?.querySelector('picture'), 'product-list-pictogram', pictoCell);
     const illustration = imageSlot(revealCell?.querySelector('picture'), 'product-list-illustration');
 
@@ -41,7 +43,6 @@ export default function decorate(block) {
 
     const desc = document.createElement('span');
     desc.className = 'product-list-description';
-    const descSource = [...(revealCell?.children || [])].find((el) => !el.querySelector('picture') && el.tagName !== 'PICTURE');
     const looseText = [...(revealCell?.childNodes || [])]
       .filter((n) => n.nodeType === Node.TEXT_NODE)
       .map((n) => n.textContent)
