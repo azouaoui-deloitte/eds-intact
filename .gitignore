@@ -11,3 +11,11 @@ helix-importer-ui
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
+
+import-work/
+
+# local aem up preview artifacts
+content/
+
+# licensed brand fonts: local verification only (see docs/migration/figma-vs-prod.md)
+fonts/intact-*
